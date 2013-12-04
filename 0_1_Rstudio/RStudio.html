@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>RStudio:R语言编辑器</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>RStudio:R语言编辑器</h1>
+
+<h1>四窗口</h1>
+
+<p>左上：写代码，运行的方式是ctrl+Enter，或者用Run按钮</p>
+
+<pre><code class="r">10 + 15
+</code></pre>
+
+<pre><code>## [1] 25
+</code></pre>
+
+<p>左下：终端，上面窗口的代码运行后会在这里显示，也可以直接在这里写代码 </p>
+
+<p>右上：工作区，显示变量，还有一个历史记录 </p>
+
+<p>右下：这个里面的有几个窗口，可以显示画的图</p>
+
+<pre><code class="r">a = c(1, 2, 3)
+b = c(4, 5, 6)
+plot(b, a)
+fit = lm(a ~ b)
+abline(fit, col = &quot;red&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAclBMVEX9/v0AAAAAADkAAGUAOTkAOY8AZrU5AAA5ADk5AGU5OWU5OY85ZrU5j9plAABlADllAGVlOQBlOY9lZmVltf2POQCPOTmPOWWPZgCP29qP2/21ZgC1Zjm1/v3ajzna/v39tWX924/9/rX9/tr9/v3/AADInj/+AAAAJnRSTlP///////////////////////////////////////////////8A/xlck0MAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAwiSURBVHic7d0JVxw3FobhtAl4PATMzIA9gWHp7f//xekFuhp6rZKudK++9z3O6SQksjgPqkV04T9mJNkftSdAdQJeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA1404EUDXjTgRQNeNOBFA160FPgROW5uCJ/w/5Jx8xM6wLfZ/JQO8E02P6kDfIPNl+d34OVaX9Ylw4+/ry4SL553PgK8y94v51Phpw/3q9e3y9evHwLeYx+3canwk7vnT69bAe+wze07K16qbtsm+Rw/ueUcH6at7Tqu6kVaLM5td+BFWmLMv/6LI50Nv3Vxt/k+QM+5kWGL5f55e54Vr9Ho6y4t8BrNvx6Bc+zc3TxxVe+83e++57iPf1qoj6+5j/fbnndd5Ni5e7th5851+95tk2vnjhXvt73vssqwc7eUf+Ec77b9767jqr71DryrEvi2mx96Ny3wTXf4TdTAt9yRN88D33DHHpoAvt2OPiwDfLMdf0gK+FY78XAc8I12wh34Njt4+74J+BY7yQ58k53hDnyDneMOfHud5Q58c53nDnxrnekOfGOd6w58W53tDnxLnd626QK+nXqwA99QvdyBb6Z+7sC3Uk934BuprzvwbdTbHfgm6u8OfAP1uX3fBHz4hrADH79h7sBHb6A78MEb6g587Aa7Ax+64e7ARy7BHfjApbgDH7ZB2zZdwActjR34qKW6Ax+zZHfgQ5buDnzEMrgDH7Ac7sDHK4s78OHK4w58sBK3bbqAD1Uu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" alt="plot of chunk unnamed-chunk-2"/> </p>
+
+<p>也可以安装包，显示帮助</p>
+
+<pre><code class="r"># ?plot
+</code></pre>
+
+<h1>文学化编程，knitr</h1>
+
+<p>Tools-&gt;option-&gt;Sweave:knitr 具体看&quot;knitr与可重复研究“ </p>
+
+<p><a href="http://cos.name/2012/06/reproducible-research-with-knitr/">http://cos.name/2012/06/reproducible-research-with-knitr/</a></p>
+
+<p>以及&quot;自动化报告&quot;</p>
+
+<p><a href="https://github.com/yihui/r-ninja/blob/master/11-auto-report.md">https://github.com/yihui/r-ninja/blob/master/11-auto-report.md</a></p>
+
+<p>knitr的主页：<a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a> ,里面有一个视频，大家可以学习。</p>
+
+<h1>文本的格式</h1>
+
+<p>代码的起始和终止 在报告中的是否输出代码，用echo控制</p>
+
+<h1>vim模式</h1>
+
+<p>Tools-&gt;option-&gt;Code Editing 最后一个选项 Enable vim editing mode</p>
+
+</body>
+
+</html>
+

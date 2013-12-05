@@ -24,3 +24,9 @@ md文件中的图片依赖与figure文件中图片
 http://yun.baidu.com/share/link?shareid=3608279111&uk=1292783730
 
 所有的视频内容都在百度云空间中，同时也在数盟社区的QQ群(321311420)里。
+
+## 目录
+* 01 R语言的编辑器 Rstudio (Finish)
+* 02 R画图的基本参数-点-线-色 (Finish)
+* 03 R文学化编程knitr包的使用详细讲解 (Finish)
+* 04-2 R 图形总参数par (Finish)

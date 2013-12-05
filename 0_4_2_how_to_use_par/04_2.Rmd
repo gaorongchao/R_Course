@@ -185,7 +185,7 @@ plot(c(0,4,0),c(0,1.5,3),type="l",lwd=10)
 
 ## lty-线条的类型
 每一本书上都有
-```{r}
+```{r,warning=FALSE}
 plot(x,y,type="n")
 abline(h=x,lty=x)
 text(2,1,"实线",col="red")

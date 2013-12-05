@@ -1,0 +1,31 @@
+```{r none,fig.show='animate'}
+library(animation)
+## set some options first
+oopt = ani.options(interval = 1, nmax = 10)
+## use a loop to create images one by one
+for (i in 1:ani.options("nmax")) {
+  plot(rnorm(30))
+  ani.pause()  ## pause for a while ('interval')
+}
+## restore the options
+ani.options(oopt)
+```
+
+```{r clock, fig.width=7, fig.height=6, fig.show='animate'}
+par(mar = rep(3, 4))
+for (i in seq(pi/2, -4/3 * pi, length = 12)) {
+    plot(0, 0, pch = 20, ann = FALSE, axes = FALSE)
+    arrows(0, 0, cos(i), sin(i))
+    axis(1, 0, "VI"); axis(2, 0, "IX")
+    axis(3, 0, "XII"); axis(4, 0, "III"); box()
+}
+```
+
+```{r two,fig.show='animate',interval=5}
+par(mar = rep(3, 4))
+for (i in seq(pi/2, -4/3 * pi, length = 12)) {
+plot(0, 0, pch = 20, ann = FALSE, axes = FALSE)
+arrows(0, 0, cos(i), sin(i))
+axis(1, 0, "VI"); axis(2, 0, "IX")
+axis(3, 0, "XII"); axis(4, 0, "III"); box()
+}

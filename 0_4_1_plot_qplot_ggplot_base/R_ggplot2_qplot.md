@@ -16,6 +16,17 @@ http://docs.ggplot2.org/current/
 
 ```r
 dugong = read.table("dugongs.txt", header = TRUE)
+head(dugong)
+```
+
+```
+##   Age Length
+## 1 1.0   1.80
+## 2 1.5   1.85
+## 3 1.5   1.87
+## 4 1.5   1.77
+## 5 2.5   2.02
+## 6 4.0   2.27
 ```
 
 
@@ -33,35 +44,29 @@ library(ggplot2)
 plot(dugong$Age, dugong$Length, col = "red")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-31.png) 
 
 ```r
 
 # colour控制颜色
-qplot(Age, Length, data = data, geom = "point", colour = "red")
+qplot(Age, Length, data = dugong, geom = "point", colour = "red")
 ```
 
-```
-## Error: ggplot2 doesn't know how to deal with data of class function
-```
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-32.png) 
 
 ```r
 
-qplot(data$Age, data$Length, geom = "point", colour = "red")
+qplot(dugong$Age, dugong$Length, geom = "point", colour = "red")
 ```
 
-```
-## Error: 类别为'closure'的对象不可以取子集
-```
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-33.png) 
 
 ```r
 
-ggplot(data, aes(x = Age, y = Length)) + geom_point()
+ggplot(dugong, aes(x = Age, y = Length)) + geom_point()
 ```
 
-```
-## Error: ggplot2 doesn't know how to deal with data of class function
-```
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-34.png) 
 
 # 线图
 
@@ -78,40 +83,36 @@ lines(spline(dugong$Age, dugong$Length, n = 201), col = 454, lwd = 2)
 lines(spline(dugong$Age, dugong$Length1, n = 201), col = 454, lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-41.png) 
 
 ```r
 
-qplot(Age, Length, data = data, geom = "line")
+qplot(Age, Length, data = dugong, geom = "line")
 ```
 
-```
-## Error: ggplot2 doesn't know how to deal with data of class function
-```
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-42.png) 
 
 ```r
-qplot(Age, Length, data = data, geom = c("line", "point"))
+qplot(Age, Length, data = dugong, geom = c("line", "point"))
 ```
 
-```
-## Error: ggplot2 doesn't know how to deal with data of class function
-```
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-43.png) 
 
 ```r
-qplot(Age, Length, data = data, geom = c("line", "point"))
+qplot(Age, Length, data = dugong, geom = c("line", "point"))
 ```
 
-```
-## Error: ggplot2 doesn't know how to deal with data of class function
-```
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-44.png) 
 
 ```r
-qplot(Age, Length, data = data, geom = c("line", "point", "smooth"))
+qplot(Age, Length, data = dugong, geom = c("line", "point", "smooth"))
 ```
 
 ```
-## Error: ggplot2 doesn't know how to deal with data of class function
+## geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
 ```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-45.png) 
 
 ```r
 

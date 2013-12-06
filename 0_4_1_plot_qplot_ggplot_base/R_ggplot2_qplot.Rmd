@@ -15,6 +15,7 @@ http://docs.ggplot2.org/current/
 某种动物的年龄和体长
 ```{r}
 dugong=read.table("dugongs.txt",header=TRUE)
+head(dugong)
 ```
 
 ## ggplot2的安装,和载入
@@ -28,11 +29,11 @@ library(ggplot2)
 plot(dugong$Age,dugong$Length,col="red")
 
 #colour控制颜色
-qplot(Age,Length,data=data,geom="point",colour="red")
+qplot(Age,Length,data=dugong,geom="point",colour="red")
 
-qplot(data$Age,data$Length,geom="point",colour="red")
+qplot(dugong$Age,dugong$Length,geom="point",colour="red")
 
-ggplot(data,aes(x=Age,y=Length))+geom_point()
+ggplot(dugong,aes(x=Age,y=Length))+geom_point()
 
 ```
 # 线图
@@ -48,10 +49,10 @@ points(dugong$Age,dugong$Length1)
 lines(spline(dugong$Age, dugong$Length, n = 201), col = 454, lwd = 2)
 lines(spline(dugong$Age, dugong$Length1, n = 201), col = 454, lwd = 2)
 
-qplot(Age,Length,data=data,geom="line")
-qplot(Age,Length,data=data,geom=c("line","point"))
-qplot(Age,Length,data=data,geom=c("line","point"))
-qplot(Age,Length,data=data,geom=c("line","point","smooth"))
+qplot(Age,Length,data=dugong,geom="line")
+qplot(Age,Length,data=dugong,geom=c("line","point"))
+qplot(Age,Length,data=dugong,geom=c("line","point"))
+qplot(Age,Length,data=dugong,geom=c("line","point","smooth"))
 
 
 

@@ -1,0 +1,18 @@
+# 曲线解决问题-替代法改变作图的顺序
+对于离散变量的作图，一般作图的顺序都是按照字符的顺序，但是我们有时候需要按照逻辑顺序来排序。
+所以我们下面通过一个比较笨的办法实现逻辑排序。
+第一：我们要按照希望的顺序分别用1，2，3等生成一个新的列。
+第二：按照新的列来生成图片
+第三：标签的替换
+
+```{r}
+library(ggplot2)
+library(gcookbook)
+PlantGrowth
+ggplot(PlantGrowth,aes(x=group,y=weight))+geom_boxplot()
+PlantGrowth$level[PlantGrowth$group=="ctrl"]="3"
+PlantGrowth$level[PlantGrowth$group=="trt1"]="2"
+PlantGrowth$level[PlantGrowth$group=="trt2"]="1"
+PlantGrowth
+ggplot(PlantGrowth,aes(x=level,y=weight))+geom_boxplot()+scale_x_discrete(labels=c("trt2","trt1","ctrl"))
+```

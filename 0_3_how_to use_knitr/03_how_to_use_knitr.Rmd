@@ -73,7 +73,8 @@ a
 b
 ```
 对比上面两个的结果，我们可以看出,echo是控制代码输出的，但echo=TRUE的时候，在html中是输出代码的，当echo=FALSE的时候是不输出代码的。
-**warnings**          
+
+**warning**          
 **error**         
 **message**
 

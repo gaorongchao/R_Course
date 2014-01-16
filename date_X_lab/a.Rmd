@@ -1,0 +1,10 @@
+```{r,warning=FALSE,fig.width=15}
+library(ggplot2)
+library(scales)
+data=read.table("a.csv",sep=",",header=TRUE)
+head(data)
+class(data$time)
+data$time=as.Date(data$time)
+ggplot(data,aes(x=time,y=weight,shape=type,colour=type))+geom_line()+geom_point(size=4)+
+  scale_x_date(breaks=date_breaks("10 days"),labels=date_format("%Y-%m-%d"))+theme(axis.text.x=element_text(angle=60,hjust=1))
+```

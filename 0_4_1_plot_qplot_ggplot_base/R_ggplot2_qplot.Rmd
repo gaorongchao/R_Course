@@ -1,6 +1,11 @@
 # 用R的基础作图系统和ggplot2做常用图
+## 课程目的
+* 复习基础作图命令
+* 学习基本的ggplot作图命令
+
 这里我们会用R语言中的基础作图系统和ggplot2中的qplot以及ggplot作常见的图。
-拨号下面几种常见的图：
+
+下面是几种常见的图：
 * 散点图
 * 线图
 * 条形图
@@ -11,12 +16,10 @@
 常见的图形的代码都在下面的网站里。
 http://docs.ggplot2.org/current/
 
-## 数据集
-某种动物的年龄和体长
-```{r}
-dugong=read.table("dugongs.txt",header=TRUE)
-head(dugong)
-```
+## 命令简介
+* plot: 是R基础作图的命令
+* qplot:quick plot,是ggplot2中的简易作图系统。
+* ggplot:是ggplot2的作图命令
 
 ## ggplot2的安装,和载入
 ```{r}
@@ -25,69 +28,170 @@ library(ggplot2)
 ```
 
 ## 散点图 
-```{r}
-plot(dugong$Age,dugong$Length,col="red")
-
-#colour控制颜色
-qplot(Age,Length,data=dugong,geom="point",colour="red")
-
-#size 控制大小
-qplot(dugong$Age,dugong$Length,geom="point",colour="red",size=2)
-
-ggplot(dugong,aes(x=Age,y=Length))+geom_point(size=5,colour="blue")
-
+### plot
+```{r,fig.width=5,fig.height=4}
+# 使用的数据集
+head(mtcars)
+plot(mtcars$wt,mtcars$mpg,col="red")
 ```
-# 线图
-```{r}
-plot(dugong$Age,dugong$Length,type="l")
+ plot后面必须要有横坐标的数据和纵坐标的数据，
+ col控制的是颜色
+ 如果我们要指定图形的其他属性，那么要添加其他的参数
+```{r,fig.width=5,fig.height=4}
+plot(mtcars$wt,mtcars$mpg,col="red",cex=2,pch=25)
+```
+pch控制点的符号，cex控制符号的大小，具体请看帮助文档。
+
+### qplot
+qplot与plot非常相似
+这里用colour控制颜色,意思更明显
+```{r,fig.width=5,fig.height=4}
+qplot(mtcars$wt,mtcars$mpg,colour="red",size=2)
+```
+geom：geometric object几何对象
+ 也就是我们可以控制geom来绘制不同的图形
+ 比如我们现在的散点图，我们把geom的参数设置为point,也就是散点图的意思
+```{r,fig.width=5,fig.height=4}
+qplot(mtcars$wt,mtcars$mpg,geom="point",colour="red",size=2)
+```
+另外一种方式，通过data来控制数据集，和上面是一样的效果。
+```{r,fig.width=5,fig.height=4}
+qplot(wt,mpg,data=mtcars,geom="point",colour="red",size=2)
+```
+### ggplot
+我们再来用ggplot画散点图。这里形式就稍微不同。
+用ggplot命令来画图，可以分成两部分：
+
+第一:数据集，ggplot(mtcars,aes(x=wt,y=mpg)),通过这一句设置画图需要用的数据。
+
+第二：图的类型，这里用geom_point,geom_line等。
+```{r,fig.width=5,fig.height=4}
+ggplot(mtcars,aes(x=wt,y=mpg))+geom_point(colour="red",size=3)
+```
+## 线图
+### plot
+线条的添加其实在plot上用type="l",也就是line的意思
+```{r,fig.width=5,fig.height=4}
+x=c(1,3,4,9,11,17,3,4)
+y=c(2,5,9,12,15,19,6,8)
+data1=data.frame(x,y)
+plot(x,y,type="l")
 # 在线上添加点
-points(dugong$Age,dugong$Length)
-dugong$Length1=dugong$Length*0.9
+points(x,y)
+y1=y*0.9
 # 添加一条线
-lines(dugong$Age,dugong$Length1,col="red")
-points(dugong$Age,dugong$Length1)
+lines(x,y1,col="red")
+points(x,y1)
 # 添加平滑曲线
-lines(spline(dugong$Age, dugong$Length, n = 201), col = 454, lwd = 2)
-lines(spline(dugong$Age, dugong$Length1, n = 201), col = 454, lwd = 2)
-
-qplot(Age,Length,data=dugong,geom="line")
-qplot(Age,Length,data=dugong,geom=c("line","point"))
-qplot(Age,Length,data=dugong,geom=c("line","point"))
-qplot(Age,Length,data=dugong,geom=c("line","point","smooth"))
-
-
-
-ggplot(dugong,aes(x=Age,y=Length))+geom_line(colour="blue",size=2)
-ggplot(dugong,aes(x=Age,y=Length))+geom_line()+geom_point()+geom_smooth()
-
-# geom_line(),geom_point(),geom_smooth(),可以在括号中添加各种参数来控制
-# 在后面具体的详细讲解
+# 用spline来添加
+lines(spline(x,y, n = 20), col = 454, lwd = 2)
+# n越大曲线越平滑
+lines(spline(x,y, n = 201), col = 454, lwd = 2)
+lines(spline(x,y1, n = 201), col = 454, lwd = 2)
+```
+### qplot
+geom可以通过不同的设置来添加不同的曲线。
+并且可以给geom赋多个值。如下：
+```{r,fig.width=5,fig.height=4}
+# 折线图
+qplot(data1$x,data1$y,geom="line")
+# 折线+点图
+qplot(x,y,data=data1,geom=c("line","point"),colour="red")
+# 折线+点+平滑的模拟曲线
+# 阴影表示的是95%的置信区间
+qplot(x,y,data=data1,geom=c("line","point","smooth"))
+```
+### ggplot
+```{r,fig.width=5,fig.height=4}
+ggplot(data1,aes(x=x,y=y))+geom_line()
+ggplot(data1,aes(x=x,y=y))+geom_line()+geom_point()+geom_smooth()
 ```
 ## 条形图
-```{r}
-head(dugong)
-# 显示27个Age
-barplot(dugong$Age,names.arg=dugong$Age)
-# 两个参数，names.arg=dugong$Age控制名称
-barplot(dugong$Length,names.arg=dugong$Length)
-# 附带，关于名称的显示，这里如果太长不能显示完全，可以通过改变x轴的
-# ggplot的bar有所不同
+### barplot
+```{r,fig.width=5,fig.height=4}
+# 用mtcar的数据
+data2=table(mtcars$cyl)
+data2
 
+barplot(table(mtcars$cyl))
+# names.arg 来设置横坐标的名称
+BOD
+barplot(BOD$demand,names.arg=BOD$Time)
+```
 
+### qplot
+```{r,fig.width=5,fig.height=4}
+# stat 是统计方式，默认为bin，
+#bin的统计方式是对所有的提供的变量的数据进行统计，然后统计的数目作为y轴
+qplot(mtcars$cyl)
+# 我们看图会发现虽然没有5和7这个点，但是依然空出来位置。
+# 如果我们不想要这个位置，我们首先要把x轴的元素编程因子（factor）
+qplot(factor(mtcars$cyl))
+# 如果数据是已经统计好的，那么我们需要改变统计的方式
+# 这里我们修改为identity,这里提供两个参数
+qplot(BOD$Time,BOD$demand,geom="bar",stat="identity")
+qplot(factor(BOD$Time),BOD$demand,geom="bar",stat="identity")
+```
+
+### ggplot
+```{r,fig.width=5,fig.height=4}
+ggplot(BOD,aes(x=Time,y=demand))+geom_bar(stat="identity")
+ggplot(BOD,aes(x=factor(Time),y=demand))+geom_bar(stat="identity")
 ```
 ## 直方图-核密度图
-```{r}
-
+### hist
+直方图涉及到一个分组的数量，不如，你把所有的数据分成两组，
+就只有2个，分成10个，就有10个,分的越多，越精细。
+```{r,fig.width=5,fig.height=4}
+hist(mtcars$mpg,breaks=3)
+hist(mtcars$mpg,breaks=10)
+# 添加核密度曲线
+lines(density(mtcars$mpg),col="blue")
+# 这里我们用density统计了密度，但是我们要知道，在一个整体中，任何一个个体的比重是小于1的
+# 如果我们要正确的表现需要做一下修正
+hist(mtcars$mpg,breaks=10,freq=FALSE)
+lines(density(mtcars$mpg),col="blue")
 ```
+### qplot
+这里和hist有所不同，hist是确定分割的份数，而，qplot确定的是分割的宽度，也就是一份的宽度是多少。
+同样道理，宽度越窄，也是越精细的。
+```{r,fig.width=5,fig.height=4}
+qplot(mpg,data=mtcars,geom="histogram",binwidth=2)
+qplot(mpg,data=mtcars,geom="histogram",binwidth=1)
+qplot(mpg,data=mtcars,geom="density")
+```
+### ggplot
+ggplot的一大特点是图层
+```{r,fig.width=5,fig.height=4}
+# 数据
+first=ggplot(mtcars,aes(x=mpg))
+# 直方图
+first+geom_histogram(binwidth=2,fill="red",colour="black")
+# 密度图
+first+geom_density(fill="red",colour="black")
+# 直方图和密度图
+first=ggplot(mtcars,aes(x=mpg,y=..density..))
+# 上面的纵坐标表示的是频数，这里..density..把频率转化成频率
+first+geom_histogram(binwidth=2)+geom_density()
+```
+
 ## 箱线图
-```{r}
-
+### boxplot
+```{r,fig.width=5,fig.height=4}
+# 单个箱线图
+boxplot(mtcars$mpg)
+# 并列箱线图
+boxplot(mpg~cyl,data=mtcars)
 ```
-## 饼图
-```{r}
 
+### qplot
+```{r,fig.width=5,fig.height=4}
+qplot(x=cyl,y=mpg,data=mtcars,geom="boxplot")
+qplot(x=factor(cyl),y=mpg,data=mtcars,geom="boxplot")
 ```
-## 扇形图
-```{r}
 
+### ggplot
+```{r,fig.width=5,fig.height=4}
+ggplot(mtcars,aes(x=cyl,y=mpg))+geom_boxplot()
+ggplot(mtcars,aes(x=factor(cyl),y=mpg))+geom_boxplot()
 ```

@@ -42,13 +42,59 @@ q+annotate("text", x=Inf, y=Inf, label="Upper right", hjust=2,vjust=2)+
     annotate("text", x=Inf, y=-Inf, label="Down right", hjust=2,vjust=-1)
 ```
 ## 7.2.在注释中添加数学公示
+### 用基础作图系统中添加数学公示
+用expression函数
 ```{r,fig.width=7,fig.height=5}
-# A normal curve
+x=1:10
+plot(x,x)
+# 乘
+text(1,9,expression(x*y),col="red",cex=1.5,adj=0)
+text(1,8,expression(x%.%y),col="red",cex=1.5,adj=0)
+text(1,7,expression(x%*%y),col="red",cex=1.5,adj=0)
+# 加和减
+text(1,6,expression(x%+-%y),col="red",cex=1.5,adj=0)
+# 下标 
+text(1,5,expression(x[i]),col="red",cex=1.5,adj=0)
+# 指数
+text(1,4,expression(x^10),col="red",cex=1.5,adj=0)
+# 开方
+text(1,3,expression(sqrt(x)),col="red",cex=1.5,adj=0)
+text(1,2,expression(sqrt(x,y)),col="red",cex=1.5,adj=0)
+# 除
+text(1,1,expression(x%/%y),col="red",cex=1.5,adj=0)
+# 关系型
+text(3,9,expression(x!=y),col="red",cex=1.5,adj=0)
+text(3,8,expression(x<=y),col="red",cex=1.5,adj=0)
+text(3,7,expression(x%~~%y),col="red",cex=1.5,adj=0)
+text(3,6,expression(x%=~%y),col="red",cex=1.5,adj=0)
+text(3,5,expression(x%==%y),col="red",cex=1.5,adj=0)
+text(3,4,expression(x%prop%y),col="red",cex=1.5,adj=0)
+# 字型
+text(5,9,expression(plain(xy)),col="red",cex=1.5,adj=0)
+text(5,8,expression(italic(xy)),col="red",cex=1.5,adj=0)
+text(5,7,expression(bold(xy)),col="red",cex=1.5,adj=0)
+text(5,6,expression(bolditalic(xy)),col="red",cex=1.5,adj=0)
+text(5,5,expression(underline(xy)),col="red",cex=1.5,adj=0)
+text(5,4,expression(bar(xy)),col="red",cex=1.5,adj=0)
+# 更多内容请看
+demo(plotmath)
+```
+### ggplot中添加数学公示
+ggplot 中的数学表达形式和R基础作图的形式是一样的。
+```{r,fig.width=7,fig.height=5}
+# 正态曲线
 p <- ggplot(data.frame(x=c(-3,3)), aes(x=x)) + stat_function(fun = dnorm)
-
+# 用annotate 中的"text",然后要使parse=TRUE
 p + annotate("text", x=2, y=0.3, parse=TRUE,
              label="frac(1, sqrt(2 * pi)) * e ^ {-x^2 / 2}")
+p+annotate("text",x=0,y=0.2,label="x^2")
+p+annotate("text",x=0,y=0.2,parse=TRUE,label="x^2")
     
+# 公式的两部分
+p + annotate("text", x=0, y=0.05, parse=TRUE, size=4,
+             label="Function: \t   y==frac(1, sqrt(2*pi)) * e^{-x^2/2}")
+# 用*在两部分之间进行连接
+# 普通的文字用单引号引起来
 p + annotate("text", x=0, y=0.05, parse=TRUE, size=4,
              label="'Function:  ' * y==frac(1, sqrt(2*pi)) * e^{-x^2/2}")
 ```

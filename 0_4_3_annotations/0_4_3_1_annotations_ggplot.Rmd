@@ -99,29 +99,55 @@ p + annotate("text", x=0, y=0.05, parse=TRUE, size=4,
              label="'Function:  ' * y==frac(1, sqrt(2*pi)) * e^{-x^2/2}")
 ```
 ## 7.3.添加直线
+### 基础系统中的直线
+```{r,fig.width=7,fig.height=5}
+plot(x,x)
+abline(v=5)
+abline(h=5)
+# 添加斜线
+abline(0,1)# 添加斜率为1,截距为0的斜线
+abline(1,1)# 添加斜率为1,截距为0的斜线
+```
+### ggplot2中的直线
 ```{r,fig.width=7,fig.height=5}
 library(gcookbook) # For the data set
 
 p <- ggplot(heightweight, aes(x=ageYear, y=heightIn, colour=sex)) + geom_point()
 
-# Add horizontal and vertical lines
+# 用geom_hline添加水平直线
+# 用geom_vline添加竖直直线
 p + geom_hline(yintercept=60) + geom_vline(xintercept=14)
 
-# Add angled line
+# 添加任意斜率的 
+# intercept控制截距，slope控制斜率
 p + geom_abline(intercept=37.4, slope=1.75)
     
+# 除了我们直接赋值给xintercept 和yintercept以外，
+# 我们还可以从数据中给他们赋值
 library(plyr) # For the ddply() function
+# 统计了不同性别的高度的平均值
 hw_means <- ddply(heightweight, "sex", summarise, heightIn=mean(heightIn))
 hw_means
-
 p + geom_hline(aes(yintercept=heightIn, colour=sex), data=hw_means,
                linetype="dashed", size=1)
+# 线的类型
+# 0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash
+p+geom_vline(xintercept=12,linetype="blank")+
+  geom_vline(xintercept=13,linetype="solid")+
+  geom_vline(xintercept=14,linetype="dotted")+
+  geom_vline(xintercept=15,linetype="dotdash")+
+  geom_vline(xintercept=16,linetype="longdash")+
+  geom_vline(xintercept=17,linetype="twodash")
 
-    
+# 处理坐标是离散形的
 pg <- ggplot(PlantGrowth, aes(x=group, y=weight)) + geom_point()
-
+pg
+# 我们要给trt1这竖列添加竖线
+# 首先我们要看一下几个离散量的level
+levels(PlantGrowth$group)
+# 结果中"ctrl","trt1","trt2"从做往右我们分别可以用1,2,3,...表示
 pg + geom_vline(xintercept = 2)
-
+# 还可以用更聪明的办法
 pg + geom_vline(xintercept = which(levels(PlantGrowth$group)=="ctrl"))
 ```    
 ## 7.4.添加线段和箭头

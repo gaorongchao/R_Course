@@ -498,6 +498,7 @@ demo(plotmath)
 ```
 
 ### ggplot中添加数学公示
+ggplot 中的数学表达形式和R基础作图的形式是一样的。
 
 ```r
 # 正态曲线
@@ -529,36 +530,53 @@ p + annotate("text", x = 0, y = 0.05, parse = TRUE, size = 4, label = "Function:
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-64.png) 
 
 ```r
-# 用*在两部分之间进行连接
+# 用*在两部分之间进行连接 普通的文字用单引号引起来
 p + annotate("text", x = 0, y = 0.05, parse = TRUE, size = 4, label = "'Function:  ' * y==frac(1, sqrt(2*pi)) * e^{-x^2/2}")
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-65.png) 
 
 ## 7.3.添加直线
+### 基础系统中的直线
+
+```r
+plot(x, x)
+abline(v = 5)
+abline(h = 5)
+# 添加斜线
+abline(0, 1)  # 添加斜率为1,截距为0的斜线
+abline(1, 1)  # 添加斜率为1,截距为0的斜线
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
+
+### ggplot2中的直线
 
 ```r
 library(gcookbook)  # For the data set
 
 p <- ggplot(heightweight, aes(x = ageYear, y = heightIn, colour = sex)) + geom_point()
 
-# Add horizontal and vertical lines
+# 用geom_hline添加水平直线 用geom_vline添加竖直直线
 p + geom_hline(yintercept = 60) + geom_vline(xintercept = 14)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-71.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-81.png) 
 
 ```r
 
-# Add angled line
+# 添加任意斜率的 intercept控制截距，slope控制斜率
 p + geom_abline(intercept = 37.4, slope = 1.75)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-72.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-82.png) 
 
 ```r
 
+# 除了我们直接赋值给xintercept 和yintercept以外，
+# 我们还可以从数据中给他们赋值
 library(plyr)  # For the ddply() function
+# 统计了不同性别的高度的平均值
 hw_means <- ddply(heightweight, "sex", summarise, heightIn = mean(heightIn))
 hw_means
 ```
@@ -570,29 +588,62 @@ hw_means
 ```
 
 ```r
+`?`(linetype)
+```
 
+```
+## starting httpd help server ... done
+```
+
+```r
 p + geom_hline(aes(yintercept = heightIn, colour = sex), data = hw_means, linetype = "dashed", 
     size = 1)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-73.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-83.png) 
+
+```r
+# 线的类型 0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 =
+# longdash, 6 = twodash
+p + geom_vline(xintercept = 12, linetype = "blank") + geom_vline(xintercept = 13, 
+    linetype = "solid") + geom_vline(xintercept = 14, linetype = "dotted") + 
+    geom_vline(xintercept = 15, linetype = "dotdash") + geom_vline(xintercept = 16, 
+    linetype = "longdash") + geom_vline(xintercept = 17, linetype = "twodash")
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-84.png) 
 
 ```r
 
-
+# 处理坐标是离散形的
 pg <- ggplot(PlantGrowth, aes(x = group, y = weight)) + geom_point()
+pg
+```
 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-85.png) 
+
+```r
+# 我们要给trt1这竖列添加竖线 首先我们要看一下几个离散量的level
+levels(PlantGrowth$group)
+```
+
+```
+## [1] "ctrl" "trt1" "trt2"
+```
+
+```r
+# 结果中'ctrl','trt1','trt2'从做往右我们分别可以用1,2,3,...表示
 pg + geom_vline(xintercept = 2)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-74.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-86.png) 
 
 ```r
-
+# 还可以用更聪明的办法
 pg + geom_vline(xintercept = which(levels(PlantGrowth$group) == "ctrl"))
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-75.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-87.png) 
 
 ## 7.4.添加线段和箭头
 
@@ -605,7 +656,7 @@ p <- ggplot(subset(climate, Source == "Berkeley"), aes(x = Year, y = Anomaly10y)
 p + annotate("segment", x = 1950, xend = 1980, y = -0.25, yend = -0.25)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-81.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-91.png) 
 
 ```r
 
@@ -617,7 +668,7 @@ p + annotate("segment", x = 1850, xend = 1820, y = -0.8, yend = -0.95, colour = 
         "cm")))
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-82.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-92.png) 
 
 ## 7.5.添加矩形阴影
 
@@ -631,7 +682,7 @@ p + annotate("rect", xmin = 1950, xmax = 1980, ymin = -1, ymax = 1, alpha = 0.1,
     fill = "blue")
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
 
 ## 7.6.高亮某个元素
 
@@ -645,7 +696,7 @@ ggplot(pg, aes(x = group, y = weight, fill = hl)) + geom_boxplot() + scale_fill_
     "#FFDDCC"), guide = FALSE)
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-101.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-111.png) 
 
 ```r
 
@@ -654,7 +705,7 @@ ggplot(PlantGrowth, aes(x = group, y = weight, fill = group)) + geom_boxplot() +
     scale_fill_manual(values = c("grey85", "grey85", "#FFDDCC"), guide = FALSE)
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-102.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-112.png) 
 
 ## 7.7.添加误差线
 
@@ -677,7 +728,7 @@ ggplot(ce, aes(x = Date, y = Weight)) + geom_bar(fill = "white", colour = "black
 ##   See ?geom_bar for examples. (Deprecated; last used in version 0.9.2)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-111.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) 
 
 ```r
 
@@ -686,7 +737,7 @@ ggplot(ce, aes(x = Date, y = Weight)) + geom_line(aes(group = 1)) + geom_point(s
     geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se), width = 0.2)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-112.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
 
 ```r
 ce
@@ -731,7 +782,7 @@ ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + geom_bar(posit
 ##   See ?geom_bar for examples. (Deprecated; last used in version 0.9.2)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-113.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-123.png) 
 
 ```r
 
@@ -750,7 +801,7 @@ ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + geom_bar(posit
 ##   See ?geom_bar for examples. (Deprecated; last used in version 0.9.2)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-114.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-124.png) 
 
 ```r
 
@@ -768,7 +819,7 @@ ggplot(cabbage_exp, aes(x = Date, y = Weight, colour = Cultivar, group = Cultiva
 ## ymax not defined: adjusting position using y instead
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-115.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-125.png) 
 
 ```r
 
@@ -787,7 +838,7 @@ f_labels <- data.frame(drv = c("4", "f", "r"), label = c("4wd", "Front", "Rear")
 p + geom_text(x = 6, y = 40, aes(label = label), data = f_labels)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) 
 
 ```r
 
@@ -795,7 +846,7 @@ p + geom_text(x = 6, y = 40, aes(label = label), data = f_labels)
 p + annotate("text", x = 6, y = 42, label = "label text")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
 
 ```r
 
@@ -832,7 +883,7 @@ p + geom_smooth(method = lm, se = FALSE) + geom_text(x = 3, y = 40, aes(label = 
     data = labels, parse = TRUE, hjust = 0)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-123.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-133.png) 
 
 ```r
 
@@ -849,7 +900,7 @@ p + annotate("pointrange", x = 3.5, y = 20, ymin = 12, ymax = 28, colour = "red"
     size = 1.5)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
 
 
 ##  

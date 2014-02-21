@@ -2,6 +2,9 @@
 * 作者：扬眉剑 
 * 数盟群1：174306879 数盟群2：110875722
 * 数盟论坛：http://datameng.com/bbs/forum.php
+* 说明：文章内容主要主要来自《R Graphics Cookbook》
+* 网盘：http://yun.baidu.com/share/link?shareid=3608279111&uk=1292783730
+* github：https://github.com/gaorongchao/R_Course  最新更改会在github上，其他地方不再修改.
 
 ## 课程目的
 * 复习基础作图命令

@@ -1,4 +1,11 @@
 # chapter: Annotations
+* 作者：扬眉剑 
+* 数盟群1：174306879 数盟群2：110875722
+* 数盟论坛：http://datameng.com/bbs/forum.php
+* 说明：文章内容主要主要来自《R Graphics Cookbook》
+* 网盘：http://yun.baidu.com/share/link?shareid=3608279111&uk=1292783730
+* github：https://github.com/gaorongchao/R_Course  最新更改会在github上，其他地方不再修改.
+
 ## 介绍
 R Graphics Cookbook 第七章 Annotations 整理而来。
 ## 7.1.添加文本注释
@@ -8,7 +15,6 @@ annotate 中的类型
 * text 文本
 * rect 阴影矩形
 * segment 线段
-* pointrange (最后演示)
 
 ```r
 library(ggplot2)
@@ -588,14 +594,6 @@ hw_means
 ```
 
 ```r
-`?`(linetype)
-```
-
-```
-## starting httpd help server ... done
-```
-
-```r
 p + geom_hline(aes(yintercept = heightIn, colour = sex), data = hw_means, linetype = "dashed", 
     size = 1)
 ```
@@ -652,7 +650,7 @@ library(gcookbook)  # For the data set
 
 p <- ggplot(subset(climate, Source == "Berkeley"), aes(x = Year, y = Anomaly10y)) + 
     geom_line()
-
+# 添加线段的方法，用segment，然后指定x,y的起始，终止位置
 p + annotate("segment", x = 1950, xend = 1980, y = -0.25, yend = -0.25)
 ```
 
@@ -660,7 +658,8 @@ p + annotate("segment", x = 1950, xend = 1980, y = -0.25, yend = -0.25)
 
 ```r
 
-
+# grid包中的arrow可以为segment线段添加箭头，箭头的方向就是xy的方向
+# 同时用arrow可以为线段的两端添加'末端线段
 library(grid)
 p + annotate("segment", x = 1850, xend = 1820, y = -0.8, yend = -0.95, colour = "blue", 
     size = 2, arrow = arrow()) + annotate("segment", x = 1950, xend = 1980, 
@@ -672,12 +671,13 @@ p + annotate("segment", x = 1850, xend = 1820, y = -0.8, yend = -0.95, colour = 
 
 ## 7.5.添加矩形阴影
 
+
 ```r
 library(gcookbook)  # For the data set
 
 p <- ggplot(subset(climate, Source == "Berkeley"), aes(x = Year, y = Anomaly10y)) + 
     geom_line()
-
+# 添加阴影的代码,同样，四点确定一个矩形，alpha确定透明度,fill确定填充的颜色
 p + annotate("rect", xmin = 1950, xmax = 1980, ymin = -1, ymax = 1, alpha = 0.1, 
     fill = "blue")
 ```
@@ -687,6 +687,8 @@ p + annotate("rect", xmin = 1950, xmax = 1980, ymin = -1, ymax = 1, alpha = 0.1,
 ## 7.6.高亮某个元素
 
 ```r
+# 要想高亮某一个元素，或者几个元素，
+# 先新建一个变量，然后对要高亮的部分赋予不同的值
 pg <- PlantGrowth  # Make a copy of the PlantGrowth data
 pg$hl <- "no"  # Set all to 'no'
 pg$hl[pg$group == "trt2"] <- "yes"  # If group is 'trt2', set to 'yes'
@@ -708,13 +710,44 @@ ggplot(PlantGrowth, aes(x = group, y = weight, fill = group)) + geom_boxplot() +
 ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-112.png) 
 
 ## 7.7.添加误差线
+### 基础作图系统中的误差线
+
+```r
+# 我们有一个简单数据
+x = c(1, 2, 3)
+y = c(5, 9, 10)
+error1 = c(0.1, 0.15, 0.14)
+error2 = c(0.1, 0.15, 0.14)
+# 在普通的作图系统中我们用的是arrors这个函数来添加。
+plot(x, y, type = "b", col = "blue", pch = 15, lty = 2)
+# 我们首先计算有误差时y的值
+y_upper = y + error1
+y_lower = y - error1
+# 添加误差线
+arrows(x, y_upper, x, y_lower, length = 0.05, angle = 90, code = 3, pch = 19)
+```
+
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
+
+
 
 ```r
 library(gcookbook)  # For the data set
 # Take a subset of the cabbage_exp data for this example
 ce <- subset(cabbage_exp, Cultivar == "c39")
+ce
+```
 
-# With a bar graph
+```
+##   Cultivar Date Weight     sd  n      se
+## 1      c39  d16   3.18 0.9566 10 0.30251
+## 2      c39  d20   2.80 0.2789 10 0.08819
+## 3      c39  d21   2.74 0.9834 10 0.31098
+```
+
+```r
+# 上面数据中，se是一个误差 条形图的误差线
+# geom_errorbar,需要的参数就是y值在有误差是的最大和最小值
 ggplot(ce, aes(x = Date, y = Weight)) + geom_bar(fill = "white", colour = "black") + 
     geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se), width = 0.2)
 ```
@@ -728,27 +761,16 @@ ggplot(ce, aes(x = Date, y = Weight)) + geom_bar(fill = "white", colour = "black
 ##   See ?geom_bar for examples. (Deprecated; last used in version 0.9.2)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) 
 
 ```r
 
-# With a line graph
+# 折线图的误差线
 ggplot(ce, aes(x = Date, y = Weight)) + geom_line(aes(group = 1)) + geom_point(size = 4) + 
     geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se), width = 0.2)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
-
-```r
-ce
-```
-
-```
-##   Cultivar Date Weight     sd  n      se
-## 1      c39  d16   3.18 0.9566 10 0.30251
-## 2      c39  d20   2.80 0.2789 10 0.08819
-## 3      c39  d21   2.74 0.9834 10 0.31098
-```
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
 
 ```r
 
@@ -767,7 +789,8 @@ cabbage_exp
 
 ```r
 
-# Bad: dodge width not specified
+# position=position_dodge()是调整误差线的位置
+# width是跳帧误差线上下横线的长度 差：没有调整过的误差线
 ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + geom_bar(position = "dodge") + 
     geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se), position = "dodge", 
         width = 0.2)
@@ -782,11 +805,11 @@ ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + geom_bar(posit
 ##   See ?geom_bar for examples. (Deprecated; last used in version 0.9.2)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-123.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-133.png) 
 
 ```r
 
-# Good: dodge width set to same as bar width (0.9)
+# 好: 调整后的
 ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + geom_bar(position = "dodge") + 
     geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se), position = position_dodge(0.9), 
         width = 0.2)
@@ -801,13 +824,21 @@ ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + geom_bar(posit
 ##   See ?geom_bar for examples. (Deprecated; last used in version 0.9.2)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-124.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-134.png) 
 
 ```r
 
+# 位置的调整有时候必不可少,特别是在同一幅图中有多条线的时候
+ggplot(cabbage_exp, aes(x = Date, y = Weight, colour = Cultivar, group = Cultivar)) + 
+    geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se), width = 0.2, 
+        size = 0.25, colour = "black") + geom_line() + geom_point(size = 2.5)
+```
 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-135.png) 
+
+```r
+# 上面的图，误差线交叉在一起 我们通过position_dodge()来进行调整
 pd <- position_dodge(0.3)  # Save the dodge spec because we use it repeatedly
-
 ggplot(cabbage_exp, aes(x = Date, y = Weight, colour = Cultivar, group = Cultivar)) + 
     geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se), width = 0.2, 
         size = 0.25, colour = "black", position = pd) + geom_line(position = pd) + 
@@ -819,7 +850,7 @@ ggplot(cabbage_exp, aes(x = Date, y = Weight, colour = Cultivar, group = Cultiva
 ## ymax not defined: adjusting position using y instead
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-125.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-136.png) 
 
 ```r
 
@@ -829,30 +860,45 @@ ggplot(cabbage_exp, aes(x = Date, y = Weight, colour = Cultivar, group = Cultiva
 ## 7.8.向单个面板中添加注释
 
 ```r
-# The base plot
+# 基本图形
 p <- ggplot(mpg, aes(x = displ, y = hwy)) + geom_point() + facet_grid(. ~ drv)
+p
+```
 
-# A data frame with labels for each facet
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-141.png) 
+
+```r
+# 新建一个包含标签信息的数据框
 f_labels <- data.frame(drv = c("4", "f", "r"), label = c("4wd", "Front", "Rear"))
+f_labels
+```
 
+```
+##   drv label
+## 1   4   4wd
+## 2   f Front
+## 3   r  Rear
+```
+
+```r
+
+# 用geom_text添加
 p + geom_text(x = 6, y = 40, aes(label = label), data = f_labels)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-142.png) 
 
 ```r
 
-# If you use annotate(), the label will appear in all facets
+# 如果用annotate来添加，那么标签的内容会出现在每一个面板上
 p + annotate("text", x = 6, y = 42, label = "label text")
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-143.png) 
 
 ```r
 
-# This function returns a data frame with strings representing the
-# regression equation, and the r^2 value These strings will be treated as R
-# math expressions
+# 一个返回回归方程和r^2值的程序
 lm_labels <- function(dat) {
     mod <- lm(hwy ~ displ, data = dat)
     formula <- sprintf("italic(y) == %.2f %+.2f * italic(x)", round(coef(mod)[1], 
@@ -883,7 +929,7 @@ p + geom_smooth(method = lm, se = FALSE) + geom_text(x = 3, y = 40, aes(label = 
     data = labels, parse = TRUE, hjust = 0)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-133.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-144.png) 
 
 ```r
 
@@ -893,15 +939,3 @@ labels$r2 <- sprintf("italic(R^2) == %.2f", labels$r2)
 ```
 
 
-## 添加pointrange
-
-```r
-p + annotate("pointrange", x = 3.5, y = 20, ymin = 12, ymax = 28, colour = "red", 
-    size = 1.5)
-```
-
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
-
-
-##  
-p + annotate("text", x = 2:3, y = 20:21, label = c("my label", "label 2"))

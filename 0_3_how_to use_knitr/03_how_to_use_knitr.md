@@ -193,7 +193,10 @@ a
 ## [1] 100
 ```
 
+### 3.7.3 图的存储和命名
+*```{r,fig.path="path/","name"}*
 
+fig.path来指定存储的路径,name来指定名称。
 ### 3.7.2 **fig.show** = 'asis' 'hold' 'animate' 'hide'
 + asis：表示在哪里生成就在哪里显示
 + hold:的意思是把图片放到代码块以后

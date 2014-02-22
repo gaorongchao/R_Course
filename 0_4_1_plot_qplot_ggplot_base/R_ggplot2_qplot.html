@@ -525,9 +525,18 @@ first + geom_histogram(binwidth = 2) + geom_density()
 
 <pre><code class="r"># 单个箱线图
 boxplot(mtcars$mpg)
+boxplot(mtcars$mpg)$stats
 </code></pre>
 
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAEgCAMAAACuMBnmAAAAV1BMVEX9/v0AAAAAADkAAGUAOTkAOY8AZrU5AAA5AGU5OY85ZrU5j9plAABlADllAGVltf2POQCPOWWP29qP2/21ZgC1/v3ajzna/v39tWX924/9/rX9/tr9/v1fl63EAAAAHXRSTlP/////////////////////////////////////AFmG52oAAAAJcEhZcwAACxIAAAsSAdLdfvwAAARnSURBVHic7d3dchJBEEDhJGr8IRo0EIHk/Z9TobyIpbC77HDo7jnnJheW25OvtpatYhxvXg3p5toL6CWhoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoYSGEhpKaCihoeZA39rbLgg94+/WS2gooaGEhioD3fzjqfX6Tv9xHuij5ViG0K0SGkpoqPrQQRIaSmio+tA5liF0q4SGEhpKaKj60EESGkpoqPrQOZYhdKtmQ28/Hr6teLeeemmqHMsYhH5ZPh5+bj78nHhpqhzLGITefVv/9XP8palyLKPAHR2k2c/o3UPwZ3SQ6r91BOkC0NfZN3G0HMsY9Xq3WEV+dORYxqgPw9Vv5e3nqB+GOZYx6vVus/D1brBWr3fe0QM1eL3bSz/HfUYHydc7KKGh6kPnWIbQrRIaSmgooaHqQwdJaCihoepD51iG0K0SGkpoKKGh6kMHSWgooaHqQ+dYxqhvwfe7wv7depfkN6RqAH3YabD9MvXSVDmWMQb6sNPAfR0DzYZ+uPvxfe2+jsHmfxi+LG/vXzfu6xio/ltHkOpv2w1Si227d09+GA7WYpPjy3Ih9FBt/lXW6l7ogRpt231+/0nokzXYtrvY//jPvt0cvyGVr3dQQkMJDVUfOscyhG6V0FBCQ2WDnvV/zlzz8P900Je4KDFDaGiG0NAMoaEZQkMzhIZmCA3NEBqaITQ0Q2hoRovtBuQBg91C00dmdgtNHwLbLbR3dJuLhjsEtl/osy8d6KLEjGy7SfuFhneTdgtN7ybtFpreTdotNL2btN8vZ+HdpP1Cn33pMy8q9NRLB7ooMUNoaIbQ0AyhoRlCQzOEhmYIDc0QGpohNDRDaGiG0NAMoaEZQkMzhIZmCA3NEBqaITQ0Q2hoRotvwclDYHuGRg+B7RkaPQS2X2j4ENhuoelDYN1uMPnSnZVt2+70ciyjwB2dYxlCt2r+W8ef54RHZp5u9h2934V+1qWpcixjxKNj9/XprEt3Vv1ndJCEhqoPnWMZQrdKaCihoYSGqg8dJKGhhIaqD51jGUK3SmgooaGEhqoPHSShoYSGqg+dYxnhTtudXo5lhDubdHo5lhHutN3p5VhGnjs6yKbR4+s7/cfhTttNW/23jiDV37YbJO9oKKGhLrlt1942E/rEtl2b0JxtuzahOc9om5DQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJDCQ0lNJTQUEJD/QLbzpAFZT0qxgAAAABJRU5ErkJggg==" alt="plot of chunk unnamed-chunk-17"/> </p>
+
+<pre><code>##       [,1]
+## [1,] 10.40
+## [2,] 15.35
+## [3,] 19.20
+## [4,] 22.80
+## [5,] 33.90
+</code></pre>
 
 <pre><code class="r"># 并列箱线图
 boxplot(mpg ~ cyl, data = mtcars)

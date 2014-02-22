@@ -364,9 +364,19 @@ first + geom_histogram(binwidth = 2) + geom_density()
 ```r
 # 单个箱线图
 boxplot(mtcars$mpg)
+boxplot(mtcars$mpg)$stats
 ```
 
 ![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-171.png) 
+
+```
+##       [,1]
+## [1,] 10.40
+## [2,] 15.35
+## [3,] 19.20
+## [4,] 22.80
+## [5,] 33.90
+```
 
 ```r
 # 并列箱线图

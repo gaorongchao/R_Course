@@ -186,6 +186,7 @@ first+geom_histogram(binwidth=2)+geom_density()
 ```{r,fig.width=5,fig.height=4}
 # 单个箱线图
 boxplot(mtcars$mpg)
+boxplot(mtcars$mpg)$stats
 # 并列箱线图
 boxplot(mpg~cyl,data=mtcars)
 ```

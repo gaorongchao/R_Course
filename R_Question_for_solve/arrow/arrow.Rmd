@@ -1,0 +1,24 @@
+```{r}
+## 默认坐标的长度，是给定范围+4%
+## 所以坐标的最终位置我们可以推导出来
+plot(1,xlim=c(-3,6.4),ylim=c(-1.2,1.2),axes=FALSE,type="n",xlab="x",ylab="y")
+curve(cos(x),xlim=c(-2,5),axes=FALSE,add=TRUE)
+abline(v=0, h=0)
+axis(1, pos=0,tck=0.01)
+axis(2, pos=0,tck=0.01,labels=FALSE) 
+arrows(0,1,0,1.2+2.4*0.04,angle=15,code="2")
+arrows(4,0,6.4+9.4*0.04,0,angle=15,code="2")
+
+
+## 设置坐标的长度为默认长度
+par(xaxs="i",yaxs="i")
+plot(1,xlim=c(-3,6.4),ylim=c(-1.2,1.2),axes=FALSE,type="n",xlab="x",ylab="y")
+curve(cos(x),xlim=c(-2,5),axes=FALSE,add=TRUE)
+abline(v=0, h=0)
+axis(1, pos=0,tck=0.01)
+axis(2, pos=0,tck=0.01,labels=FALSE) 
+arrows(0,1,0,1.2,angle=15,code="2")
+arrows(4,0,6.4,0,angle=15,code="2")
+
+
+```

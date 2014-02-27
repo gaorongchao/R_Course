@@ -1,0 +1,21 @@
+# Cannot view gvisMotionChart from printed html file
+无法解决不能看gvisMotionChart 生成的html文件的终极解决方法。
+gvimMotionChart 问题：
+```{r}
+library(googleVis)
+data(Fruits)
+Fruits
+M=gvisMotionChart(Fruits,idvar="Fruit",timevar="Year")
+str(M)
+M$type
+M$chartid
+print (M,tag='header')
+print(M,file="my.html")
+```
+上面的意思是：这个问题是应为flash的安全设置引起的，
+所以我们要设置一下，
+具体要设置三个方面：
+第一：全局存储设置：选择不在询问 
+第二：全局安全设置：选择 始终允许 
+第三：web站点存储设置：选择 不再询问。 
+设置好以后，重新打开html文件。

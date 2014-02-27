@@ -1,0 +1,75 @@
+```{r}
+#data.FZY=read.table("data_FZY.csv",sep=",",header=TRUE)
+data.FZY=read.table("a.csv",sep=",",header=TRUE)
+data.RenShu=read.table("b.csv",sep=",",header=TRUE)
+head(data.FZY)
+head(data.RenShu)
+
+data_boxplot
+
+js <- boxplot.stats(data.FZY$全省[which(data.FZY$年份==2011)]/data.RenShu$全省[which(data.RenShu$年份==2011)])$stats
+nj <- boxplot.stats(data.FZY$南京[which(data.FZY$年份==2011)]/data.RenShu$南京[which(data.RenShu$年份==2011)])$stats
+zhj <- boxplot.stats(data.FZY$镇江[which(data.FZY$年份==2011)]/data.RenShu$镇江[which(data.RenShu$年份==2011)])$stats
+chzh <- boxplot.stats(data.FZY$常州[which(data.FZY$年份==2011)]/data.RenShu$常州[which(data.RenShu$年份==2011)])$stats
+wx <- boxplot.stats(data.FZY$无锡[which(data.FZY$年份==2011)]/data.RenShu$无锡[which(data.RenShu$年份==2011)])$stats
+szh <- boxplot.stats(data.FZY$苏州[which(data.FZY$年份==2011)]/data.RenShu$苏州[which(data.RenShu$年份==2011)])$stats
+yzh <- boxplot.stats(data.FZY$扬州[which(data.FZY$年份==2011)]/data.RenShu$扬州[which(data.RenShu$年份==2011)])$stats
+nt <- boxplot.stats(data.FZY$南通[which(data.FZY$年份==2011)]/data.RenShu$南通[which(data.RenShu$年份==2011)])$stats
+tz <- boxplot.stats(data.FZY$泰州[which(data.FZY$年份==2011)]/data.RenShu$泰州[which(data.RenShu$年份==2011)])$stats
+han <- boxplot.stats(data.FZY$淮安[which(data.FZY$年份==2011)]/data.RenShu$淮安[which(data.RenShu$年份==2011)])$stats
+ych <- boxplot.stats(data.FZY$盐城[which(data.FZY$年份==2011)]/data.RenShu$盐城[which(data.RenShu$年份==2011)])$stats
+sq <- boxplot.stats(data.FZY$宿迁[which(data.FZY$年份==2011)]/data.RenShu$宿迁[which(data.RenShu$年份==2011)])$stats
+xzh <- boxplot.stats(data.FZY$徐州[which(data.FZY$年份==2011)]/data.RenShu$徐州[which(data.RenShu$年份==2011)])$stats
+lyg <- boxplot.stats(data.FZY$连云港[which(data.FZY$年份==2011)]/data.RenShu$连云港[which(data.RenShu$年份==2011)])$stats
+}
+
+#options(digits=2)
+#全省
+boxplot(data.FZY$全省[which(data.FZY$年份==2011)]/data.RenShu$全省[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 - 0.4,xlim = c(0.5,4),ylim=c(-0.1,2.7),notch=T,col="olivedrab1",main="普通装移'日人均'工作量分布盒形图-2011")
+?format
+
+text(0.5,js+0.01,format(js,digits=2),cex=1)
+#?text
+#南京
+boxplot(data.FZY$南京[which(data.FZY$年份==2011)]/data.RenShu$南京[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 - 0.15 ,notch=T,col="brown2",add=T)
+text(0.9,nj+0.01,format(nj,digits=2),cex=1)
+#镇江
+boxplot(data.FZY$镇江[which(data.FZY$年份==2011)]/data.RenShu$镇江[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 0.1,notch=T,col="gainsboro",add=T)
+text(1.15,zhj+0.01,format(zhj,digits=2),cex=1)
+#常州
+boxplot(data.FZY$常州[which(data.FZY$年份==2011)]/data.RenShu$常州[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 0.35,notch=T,col="brown4",add=T)
+text(1.4,chzh+0.01,format(chzh,digits=2),cex=1)
+#无锡
+boxplot(data.FZY$无锡[which(data.FZY$年份==2011)]/data.RenShu$无锡[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 0.6,notch=T,col="brown3",add=T)
+text(1.65,wx+0.01,format(wx,digits=2),cex=1)
+#苏州
+boxplot(data.FZY$苏州[which(data.FZY$年份==2011)]/data.RenShu$苏州[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 0.85,notch=T,col="gainsboro",add=T)
+text(1.9,szh+0.01,format(szh,digits=2),cex=1)
+#扬州
+boxplot(data.FZY$扬州[which(data.FZY$年份==2011)]/data.RenShu$扬州[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 1.1,notch=T,col="brown1",add=T)
+text(2.15,yzh+0.01,format(yzh,digits=2),cex=1)
+text(2.15,yzh+0.01,sprintf("%.2f",yzh),cex=1)
+#南通
+boxplot(data.FZY$南通[which(data.FZY$年份==2011)]/data.RenShu$南通[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 1.35,notch=T,col="deepskyblue2",add=T)
+text(2.4,nt+0.01,format(nt),cex=1)
+#淮安
+boxplot(data.FZY$淮安[which(data.FZY$年份==2011)]/data.RenShu$淮安[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 1.6,notch=T,col="gainsboro",add=T)
+text(2.65,han+0.01,format(han),cex=1)
+#泰州
+boxplot(data.FZY$泰州[which(data.FZY$年份==2011)]/data.RenShu$泰州[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 1.85,notch=T,col="gainsboro",add=T)
+text(2.9,tz+0.01,format(tz),cex=1)
+#盐城
+boxplot(data.FZY$盐城[which(data.FZY$年份==2011)]/data.RenShu$盐城[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 2.1,notch=T,col="deepskyblue4",add=T)
+text(3.15,ych+0.01,format(ych),cex=1)
+#宿迁
+boxplot(data.FZY$宿迁[which(data.FZY$年份==2011)]/data.RenShu$宿迁[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 2.35,notch=T,col="deepskyblue3",add=T)
+text(3.4,sq+0.01,format(sq),cex=1)
+#徐州
+boxplot(data.FZY$徐州[which(data.FZY$年份==2011)]/data.RenShu$徐州[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 2.6,notch=T,col="deepskyblue1",add=T)
+text(3.65,xzh+0.01,format(xzh),cex=1)
+#连云港
+boxplot(data.FZY$连云港[which(data.FZY$年份==2011)]/data.RenShu$连云港[which(data.RenShu$年份==2011)],boxwex = 0.25,at = 1:1 + 2.85,notch=T,col="gainsboro",add=T)
+text(3.9,lyg+0.01,format(lyg),cex=1)
+text(x=c(0.6,0.85,1.1,1.35,1.6,1.85,2.1,2.35,2.6,2.85,3.1,3.35,3.6,3.85),y=-0.1,
+     labels=c("全省","南京","镇江","常州","无锡","苏州","扬州","南通","淮安","泰州","盐城","宿迁","徐州","连云港"))
+```

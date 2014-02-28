@@ -1,4 +1,4 @@
-```{r}
+```{r,fig.width=15,fig.height=10,warning=FALSE}
 library(reshape)
 data.FZY=read.table("a.csv",sep=",",header=TRUE)
 data.RenShu=read.table("b.csv",sep=",",header=TRUE)

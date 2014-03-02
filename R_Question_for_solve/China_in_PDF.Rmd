@@ -1,0 +1,9 @@
+```{r}
+library(Cairo)
+CairoPDF()
+attach(mtcars)
+plot(wt,mpg,main="Mpg¶ÔwtµÄ»Ø¹é",family="simsun")
+abline(lm(mpg~wt))
+detach(mtcars)
+dev.off()
+```

@@ -1,0 +1,9 @@
+```{r}
+a=c("a1","a2","a3","a4","a5")
+b=c("b1","b2","b3","b4","b5")
+seq1=seq(1,2*length(a),by=2)
+seq2=seq(2,2*length(a),by=2)
+c[seq1]=a
+c[seq2]=b
+c
+```

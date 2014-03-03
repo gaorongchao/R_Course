@@ -1,0 +1,21 @@
+```{r}
+data=iris[51:100,]
+data1=data[,1:4]
+# 数据框转化成矩阵
+data2=as.matrix(data1)
+dis=c(1:50)
+V=solve(var(data2))
+mx=c(mean(data[,1]),mean(data[,2]),mean(data[,3]),mean(data[,4]))
+# 测试
+a=as.vector((data2[1,]-mx)%*%V)
+b=as.vector(t(data2[1,]-mx))
+c=a%*%b
+# 修改
+for (i in 1:50){
+    a=as.vector((data2[i,]-mx)%*%V)
+    b=as.vector(t(data2[i,]-mx))
+    dis[i]=a%*%b
+    }
+dis
+plot(dis)
+```

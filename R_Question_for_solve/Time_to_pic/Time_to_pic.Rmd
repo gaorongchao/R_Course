@@ -1,0 +1,30 @@
+```{r}
+library(ggplot2)
+library(scales)
+
+data<-read.table("a.csv",sep=",",header=TRUE)
+
+class(data$time)
+data$time=as.Date(data$time)
+class(data$time)
+start=as.Date("2011-04-13")
+data$time1=data$time-start
+data$time2=as.numeric(data$time1)
+
+head(data)
+myfun=function(xvar){
+  390.4-390.38/(1+(xvar/99.544)^3)
+}
+ggplot(data,aes(time2,weight,shape=type,colour=type))+geom_line()+
+geom_point(size=2.5)+scale_x_continuous(breaks=seq(0,180,by=20))+
+theme(axis.text.x=element_text(angle=60,hjust=1))+
+stat_function(fun=myfun,geom="line",colour="black",size=1)
+```
+# 下面讲了横坐标为时间的时候的划分
+```{r}
+ggplot(data,aes(time1,weight,shape=type,colour=type))+geom_line()+
+geom_point(size=2.5)+scale_x_date(breaks=date_breaks("20 days"),labels=date_format("%m-%d"))+
+theme(axis.text.x=element_text(angle=60,hjust=1))
+  #stat_function(fun=myfun,geom="line")
+
+```

@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}环境配置}{1}{section.1}
+\contentsline {section}{\numberline {2}sepDNA的安装}{1}{section.2}
+\contentsline {section}{\numberline {3}使用方法}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}载入包}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}使用}{3}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}数据导入}{3}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}分析设置}{4}{subsubsection.3.2.2}

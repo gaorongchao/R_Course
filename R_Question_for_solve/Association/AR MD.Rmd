@@ -1,0 +1,32 @@
+```{r}
+#读入数据
+data=iris[,1:4]
+head(data)
+for(j in 1:4){
+ k=sample(1:150,sample(10:20))
+ data[k,j]=NA
+ }
+datacomp=na.omit(data)
+#数据离散化
+for(j in 1:4){
+ for(i in 1:nrow(datacomp)){
+ if(datacomp[i,j]>=min(datacomp[,j])&datacomp[i,j]<quantile(datacomp[,j],0.25)){
+  datacomp[i,j]=1}
+ if(datacomp[i,j]>=quantile(datacomp[,j],0.25)&datacomp[i,j]<quantile(datacomp[,j],0.5)){
+  datacomp[i,j]=2}
+ if(datacomp[i,j]>=quantile(datacomp[,j],0.5)&datacomp[i,j]<quantile(datacomp[,j],0.75)){
+   datacomp[i,j]=3}
+ if(datacomp[i,j]>=quantile(datacomp[,j],0.75)){
+   datacomp[i,j]=4}
+}
+}
+#离散化值转化为因子
+datacomp[,1]=factor(datacomp[,1],levels=sort(unique(datacomp[,1]),decreasing=T),labels=c("A","B","C","D"))
+datacomp[,2]=factor(datacomp[,2],levels=sort(unique(datacomp[,2]),decreasing=T),labels=c("E","F","G","H"))
+datacomp[,3]=factor(datacomp[,3],levels=sort(unique(datacomp[,3]),decreasing=T),labels=c("a","b","c","d"))
+datacomp[,4]=factor(datacomp[,4],levels=sort(unique(datacomp[,4]),decreasing=T),labels=c("e","f","g","h"))
+#关联分析
+library(arules)
+ass_datacomp=rules=apriori(datacomp, parameter = list(supp = 0.2, conf = 0.5,
+                                  target = "rules"))
+```

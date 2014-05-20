@@ -1,0 +1,29 @@
+# 如何排序X轴坐标
+
+```{r}
+library(ggplot2)
+A=read.table("123.txt",head=TRUE)
+A
+# 如果直接画图,是按照字符串来排序的，
+qplot(Lengthspan,log(Numbers),data=A,geom="bar",stat="identity")+theme(axis.text.x=element_text(angle=60))
+# 当然你可以转换成数字，但是最后一个元素，还有一个大于号
+# 还是要曲线来实现这个目标
+```
+
+```{r}
+# 因为A$Lengthspan是factor，先转化成字符
+A$Lengthspan=as.character(A$Lengthspan)
+# 添加新变量,用来排序
+A$Lengthspan1=0
+num=dim(A)[1]
+num
+for(i in 1:num)
+  {
+  #A[i,4]=unlist(strsplit(A[i,1],split="~"))[1]
+  A[i,4]=i
+  }
+A
+#A$Lengthspan1=as.numeric(A$Lengthspan1)
+qplot(Lengthspan1,log(Numbers),data=A,geom="bar",stat="identity",fill="red")+
+  theme(axis.text.x=element_text(angle=60))+ xlim(A$Lengthspan)
+```

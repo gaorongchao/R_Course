@@ -1,0 +1,48 @@
+```{r}
+library(ggplot2)
+x=c(-10,10)
+myfun=function(xvar)
+  {
+  dnorm(xvar,mean=0.6,sd=1.35)
+  }
+
+a1=0.6-1.35*1.96
+a2=0.6+1.35*1.96
+a1
+a2
+
+x=seq(-3.4,4.6,length=200)
+y=dnorm(x,mean=0.6,sd=1.35)
+?dnorm
+
+plot(x,y,type="n")
+curve(myfun,from=-3.4,to=0,lty=3,xlim=c(-3.4,4.9),ylim=c(0,0.3))
+curve(myfun,from=0,to=4.6,lty=1,add=TRUE)
+xx=seq(a1,a2,length=1000)
+yy=c(0,dnorm(xx,mean=0.6,sd=1.35),0)
+xx=c(a1,xx,a2)
+
+polygon(xx,yy,col="grey",border=NA)
+xx1=seq(-3.4,a1,length=1000)
+yy1=c(0,dnorm(xx1,mean=0.6,sd=1.35),0)
+xx1=c(-3.4,xx1,a1)
+polygon(xx1,yy1,col="red",border=NA)
+
+xx2=seq(a2,4.6,length=1000)
+yy2=c(0,dnorm(xx2,mean=0.6,sd=1.35),0)
+xx2=c(a2,xx2,4.6)
+polygon(xx2,yy2,col="blue",border=NA)
+# ª≠“ı”∞
+# ª≠ ˙œﬂ
+segments(0,0,0,dnorm(0,mean=0.6,sd=1.35),col="red")
+segments(0.6,0,0.6,dnorm(0.6,mean=0.6,sd=1.35),col="red")
+text(a1,0.06,a1)
+text(a2,0.06,a2)
+text(0.6,0.27,"0.6")
+
+
+ggplot(data.frame(x=c(-10,10)),aes(x=x))+stat_function(fun=myfun)
+?dnorm
+?abline
+```
+

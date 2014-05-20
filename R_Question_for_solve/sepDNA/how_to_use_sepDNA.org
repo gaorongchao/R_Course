@@ -1,0 +1,72 @@
+#+TITLE: How to use sepDNA
+#+AUTHOR: GRC(扬眉剑)
+#+LATEX_CLASS: ctexart
+#+ATTR_LATEX: :width .5
+* 环境配置
+安装依赖的包：
+#+BEGIN_SRC r
+  install.packages("RGtk2")
+  install.packages("gWidgetsRGtk2")
+  install.packages("RSQLite")
+#+END_SRC
+
+因为包RGtk2是依赖于GTK的，所以还要安装GTK。但是这里大家注意，不用自己去下载安装。
+大家安装好RGtk2以后，然后用library(RGtk2)载入的时候，会提示让你安装Gtk。
+你只需要选择安装就可以了。
+这里还要注意一点，就是win64位系统的安装，大家如果用64位的R安装报错的话，那么安装
+32位的R是一个明智的选择。（这里的报错包括后面编译sepDNA这个包）
+
+* sepDNA的安装
+这里提供给我们的是sepDNA\_1.0-6.tar.gz的文件。在windows系统下无法直接用R安装。
+我们需要用到Rcmd。要使用Rcmd我们首先要把Rcmd命名所在的文件夹，添加到环境变量中。
+Rcmd在R/bin/i386这个文件夹中。添加好以后，运行-cmd-Rcmd就会出现Rcmd命令的一些
+选项。我们这里用到的是Rcmd的INSTALL功能，安装命令如下：
+#+BEGIN_SRC perl
+  Rcmd INSTALL D:\sepDNA_1.0-6.tar.gz 
+#+END_SRC
+当然你可以选用-l选项来选择把包安装到不同的文件夹中。
+
+* 使用方法
+** 载入包
+   DEADLINE: <2014-04-19 Sat>
+#+BEGIN_SRC r
+  library(sepDNA)
+#+END_SRC
+注意，sepDNA只能在R自带的RGui下使用，无法在Rstudio下面使用。
+如果你在Rstudio下使用会得到以下报错信息：
+#+BEGIN_EXAMPLE
+  Error in winMenuAddItem : function not supported in RStudio
+#+END_EXAMPLE
+下面我们会看到我们载入包以后会在RGui中添加一个菜单项。但是这个添加却不能在RStudio中实现。
+
+当我们加载以后，我们发现在R的菜单栏中出现了一个新的选项：sepDNA。
+这个就是我们载入的包,sepDNA。我们后面就可以直接使用这个选项。
+
+[[D:\Git\R\R_Course\R_Question_for_solve\sepDNA\sepDNA1.jpg]]
+** 使用
+我们点击sepDNA这个菜单以后，会出现四个选项。
+ * 系统设置(可以设置启动R自动加载)
+ * 导入数据
+ * 分析设置
+ * 报告
+
+我们着重来看后面三个
+*** 数据导入
+[[D:\Git\R\R_Course\R_Question_for_solve\sepDNA\sepDNA2.jpg]]
+
+sepDNA的包解压以后在inst/examples中会有一些实例文件用来分析。
+我们导入数据以后会出现一个窗口让我们选择列名。我们依次选择：
+
+[[D:\Git\R\R_Course\R_Question_for_solve\sepDNA\sepDNA3.jpg]]
+
+点击OK以后，数据成功导入。
+*** 分析设置
+我们打开分析设置的窗口，刚才导入的文件名已经在filename中。
+点击连接数据，我们的R包会把基因座名称显示出来。
+在分析选项中我们选择IDfiler，然后点击绘制图形。
+
+[[D:\Git\R\R_Course\R_Question_for_solve\sepDNA\sepDNA4.jpg]]
+
+然后就会按照数据进行画图分析。
+
+[[D:\Git\R\R_Course\R_Question_for_solve\sepDNA\sepDNA5.jpg]]

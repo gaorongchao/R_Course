@@ -26,25 +26,29 @@ seq=seq(10,35,by=1)
 hist(mtcars$mpg,breaks=seq)
 # 2、这个最常用，直接给出分成的份数，比如：
 hist(mtcars$mpg,breaks=10)
-# 3、
-a character string naming an algorithm to compute the number of cells (see ‘Details’),
+# 3、用算法来计算
+#这里breaks等于一个字符串命名的算法
 # 4、用函数来计算
-用函数来计算每一个方格的内的数目 a function to compute the number of cells.
+#用函数来计算每一个方格的内的数目 a function to compute the number of cells.
 ```
-In the last three cases the number is a suggestion only.
-
-freq	
-logical; if TRUE, the histogram graphic is a representation of frequencies, the counts component of the result; if FALSE, probability densities, component density, are plotted (so that the histogram has a total area of one). Defaults to TRUE if and only if breaks are equidistant (and probability is not specified).
-
-probability	
-an alias for !freq, for S compatibility.
-
+## 直方图的相关信息
+你完成作图以后，可能希望看到，每一个直方图的信息，比如，一个方格的间距，频数等。
+那么你可以这样做：
+```{r}
+a=hist(mtcars$mpg,breaks=10)
+a
+```
+## freq  
+freq是一个为逻辑型数值,如果为True，那么直方图的纵坐标代表的是频率，是数据在这一个方格中计数，
+如果是FALSE，画出的是概率密度和组分密度(这里要保证所有直方图的面积为1。默认为TRUE。
+## include.lowest
 include.lowest	
 logical; if TRUE, an x[i] equal to the breaks value will be included in the first (or last, for right = FALSE) bar. This will be ignored (with a warning) unless breaks is a vector.
 
 right	
 logical; if TRUE, the histogram cells are right-closed (left open) intervals.
 
+## density
 density	
 the density of shading lines, in lines per inch. The default value of NULL means that no shading lines are drawn. Non-positive values of density also inhibit the drawing of shading lines.
 
@@ -120,20 +124,12 @@ a character string with the actual x argument name.
 equidist	
 logical, indicating if the distances between breaks are all the same.
 
-References
-
-Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) The New S Language. Wadsworth & Brooks/Cole.
-
-Venables, W. N. and Ripley. B. D. (2002) Modern Applied Statistics with S. Springer.
-
-See Also
-
 nclass.Sturges, stem, density, truehist in package MASS.
 
 Typical plots with vertical bars are not histograms. Consider barplot or plot(*, type = "h") for such bar plots.
 
-Examples
-
+# Examples
+```{r}
 op <- par(mfrow = c(2, 2))
 hist(islands)
 utils::str(hist(islands, col = "gray", labels = TRUE))
@@ -165,5 +161,4 @@ qqplot(x, qchisq(ppoints(x), df = 4)); abline(0, 1, col = 2, lty = 2)
 ## if you really insist on using hist() ... :
 hist(x, freq = FALSE, ylim = c(0, 0.2))
 curve(dchisq(x, df = 4), col = 2, lty = 2, lwd = 2, add = TRUE)
-
-[Package graphics version 2.15.3 Index]
+```

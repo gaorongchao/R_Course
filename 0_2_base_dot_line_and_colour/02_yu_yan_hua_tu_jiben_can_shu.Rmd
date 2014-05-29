@@ -76,6 +76,8 @@ pie(rep(1,10),col=rainbow(10))
 #多阶灰度
 pie(rep(1,10),col=gray(0:10/10))
 
+# 查看所有的颜色的名称的列表，可以用
+colours()
 ```
 我们肯定是记不住这么多颜色的，所以这里有一个专门整理好的网站，供我们参考
 http://research.stowers-institute.org/efg/R/Color/Chart/

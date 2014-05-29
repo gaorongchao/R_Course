@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
 
 <title>R 语言画图的基本参数</title>
 
@@ -271,7 +272,8 @@ plot(a, a, type = &quot;b&quot;, lty = 1)
 
 <pre><code class="r">plot(a, a, type = &quot;b&quot;, lty = 2)
 # 6种线，分别对应lty = 1，2，3，4，5，6
-# 通过在图上添加参考线来认识一下这六种线 添加参考线的函数为abline ?abline()
+# 通过在图上添加参考线来认识一下这六种线 添加参考线的函数为abline
+# ?abline()
 b = 1:6
 abline(h = b, lty = b)
 abline(v = b, lty = b)
@@ -288,13 +290,23 @@ abline(a = 0, b = 5, lty = b)
 <pre><code class="r">abline(h = b, lty = b, lwd = b)
 </code></pre>
 
-<pre><code>## Error: plot.new has not been called yet
+<pre><code>## Error: 还没有调用plot.new
 </code></pre>
 
 <pre><code class="r">plot(x, y, lwd = 1)
-plot(a, a, type = &quot;b&quot;, lwd = 5)
-plot(a, a, type = &quot;b&quot;, lwd = 1)
 </code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<pre><code class="r">plot(a, a, type = &quot;b&quot;, lwd = 5)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAbFBMVEX9/v0AAAAAADkAAGUAOTkAOWUAOY8AZrU5AAA5ADk5AGU5OWU5OY85j9plAABlADllAGVlOQBlOY9ltf2POQCPOTmPZgCPtY+P29qP2/21ZgC1/v3ajzna24/a/v39tWX924/9/rX9/tr9/v1zC8YmAAAAJHRSTlP//////////////////////////////////////////////wBYLA0NAAAACXBIWXMAAAsSAAALEgHS3X78AAALRklEQVR4nO3d61obyxFG4S2TGOIYTAJOAihGh/u/x60T3sZIoxl1dXdVfWs99sMPWc2gV6MpSSPzx5ok+6P3BlCfgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAF60EfkaeqwhfcF2qHfCiAS8a8KIBLxrwohXDL252Tw6uXqYuTV0rhV89Puy+vn7+MXFp6lop/PL+5d3X8UtT035/xYY9XqKPr9YVH+OXdxzj/VcBfuCbFVyXTDvyAn0F+JFvA1C72sCPXJoaxkO9aPbwh9nu2HQHvJOOvgdfvMevHm9Pfb/RW0Y125NbP4/f7PPfnk58w3HbRXU7MWhzjE/eqWdYwOfu5DNr4DM38IoK8IkbeiUN+LwNvoIKfNqGXzkHPmtn3jABPmnn3igDPmdn3yAFPmXn3xgHPmFjTogAPl+jToQBPl3jToACPlsjT3wDPlljz3cEPlejz3MFPlWj3YFP1Xh34BM1cqw7/OPhi4GP0yR34NM0zR34LE10Bz5JE9mBT9Jkd+BTNN0d+Axd4A58gi5xBz58U8f5t6sNXwy89y50Bz54l7oDH7uL3YEP3cXswIeuwB34wJW4Ax+3Infgo3b5WHe4/vDFwDut1B34mBW7Ax+ycnfgI1bODnzELNyBj5eJO/DhsnEHPlgGY91hoeGLgfeVmTvwobJzBz5Shu7AB8qQHfhAmboDHyZbd+CjZOwOfJCs3YEPkeU4/7bk8MXAe6iCO/ABquEOvP+quAPvvirswLuvkjvwzqvlDrzvqrkD77k6Y91h7eGLge9YTXfg/VbVHXi31XUH3mt12YH3Wm134H1W3R14l9V3B95hlce6wzcZvvg8/OJmdj2fza5epi5NJ2riXgy/+v60nl9v/L/+mLg0Ha+NezH88v5lPb/df31bstGm56zVjcce76tm+4zFMf6WY7xV7R4rmeo91fAYCbyjWs5GwPup6UwMvJcaPxcC3kmtnwMD76Pmr30A76L2r3kB76EOL3UC76AeL3ED378ub20A370+b2kB37leb2UC37dub2ED37V+py4A37OOp6wA37GeZyoB36+uZ6gB362+ZyYC36vOZ6QC36neZyID36WO4/zbFgxfDHyV+rsD3yMH7sB3yIM78O3zwA58+3y4A986J+7AN86LO/BNczHW7QO+YY7cgW+YJ3fg2+XKHfhmuWIHvlnO3IFvlDd34Nvkzh34Fvka6/YBXz+P7sDXz6U78NXz6Q587XyyA187r+7A182tO/BV8+sOfM0cuwNfL6fj/CHga+XbHfhaOXcHvlLe3YGvk3d24Ovk3x34GgVwB75CEdyBN8/9WLcPeOOCuANvXBR34G0L4w68aWHYgTctkDvwhkVyB96uUO7AWxVnrNsHvE3R3IG3KZw78CbFcwfeonjswFsU0R348kK6A19cTHfgSwvqDnxZAcf5Q8Xwi5uH1eNs9vnH1KUzFNe9GH71+LB+ftj4f/0gH/HmmFZg92L45f3L6vvT7uvPJSPfHlMK/XMWP9RvdvfX2/X69Xrq0uGLzG4x3D3vfvyP7tnhY7sz1V9acHfgLyy6O/AXFXqs2wf8BSVwB/6CMrgDP70U7sBPLgU78JNL4g78xLK4Az+tNO7ATynHWLcP+PFlcgd+fKncgR9dLveR8PPdj3z1MvyPpy0drFzsI+GX355er9fzI++5Fywdq2zuI+HvX/Z/LJcOVTr3cfCr70+bP4svsvD53Ece4zfmr7PZrenSgUrozlR/vmTj/CHgz5XTHfhzJXUH/kxZ3YEfLis78MPldQd+qMTuwA+U2R34k6Ud6/YBf6Lk7sCfKLs78MdL7w780dKzA380AXfgj6TgDvzHJNyB/738Y90+4N+n4g78+2TcgX+Xjjvwv6bDDvyvKbkD/1dS7sD/TMsd+LfE3IHfJzTOHwJ+m5478NsE3YFfa7oDrzfW7QNe0x14UXd5eFV3cXjJsW6fNLywuzS8srsyvLS7MLw0uzC8uLssvLq7Kry8uya89li3TxEe97UkPO7b9OBx3yUHD/s+NXjcD4nB4/6WFjzuP5OCx/2vhOAZ539NBx73d8nA4/4+G/ijv5nM1W2M+2+Vwi/vDrfox98/6ulGhv33ivf45d2G/N0eP/O3d7nboP4ZPNQv7z7/3/dDPe4fMznGL26O/aJpNzc07kfKP9X7O/C4KD087sfLDo/7iZLD436q3PCwnyw1PO6nywyP+0CJ4XEfKi08Y91wWeFxP1NSeNzPlRMe97OlhIf9fBnhcR9RQnjcx5QPHvdRpYPHfVzJ4Bnnx5YLHvfRpYLHfXyZ4HGfUCJ42KeUBx73SaWBx31aWeBxn1gOeMa6yaWAx316GeBxv6AE8LhfUnx42C8qPDzulxUdHvcLCw6P+6XFhsf94iLDM84XFBge95LiwuNeVFh43MuKCg97YUHhcS8tJjzuxYWEx728gPCMdRbFg8fdpHDwuNsUDR53o4LBw25VLHjczQoFj7tdkeBxNywOPGOdaWHgcbctCjzuxgWBx926GPCwmxcCHnf7IsDjXqEA8LjXyD887lXyDs84Xynn8LjXyjc87tVyDY97vTzDw14xx/C418wvPO5VcwuPe92cwjPW1c4nPO7VcwmPe/08wuPeoGL4xc3s09N6vbx/mbj06U2CvUGl8KvHh83fW0N43JtUCr8Hf77+BX5W9FCNe5ss9vhN8799sdnjcW9U8TF+eXe7/TK/soBnrGuWq6ke93Z5gse9YY7gcW+ZH3jYm+YGHve2eYHHvXFO4HFvnQ943JvnAZ5xvkMO4HHvUX943LvUHR73PvWGh71TneFx71VfeNy71RUe9351hGes61k/eNy71g0e9771gse9c53gYe9dH3jcu9cFHvf+9YDH3UHt4RnrXNQcHncftYbH3UmN4XH3Ult42N3UFB53P3WAL1iSzGoGvwXH3U+N4GczxjpftYUvWI1sawPP/u4u4EXjoV404EUDXrSmz+PJT70/O0edAl404EUDXjTgRQNeNOBFA1404EWrCU+eqwd/eVUeK+Is6mFTge+wqIdNBb7Doh42FfgOi3rYVOA7LOphU4HvsKiHTQW+w6IeNrUPPHUPeNGAFw140YAXDXjRgBcNeNGAFw140TrAL25mswf7ZVeP5ouuHmefnqwX3f78Vy/Wa37ZrLi8m33+MfYa7eGX357Wi3/Y355z+3vT88P6dfxNObLtzz83XvV1e1fa3vPn12Ov0h7+dbttz+ZIi3/+y3rN5b31jrlt8fWH9crPn/672eO3i+72/FH1OcZv7/W2rb7/z/yhfvH1PxUe6mvs8Tvw3T1q9A3bBX71eGu95PzW/hi/uHnY3ZrGTToUj2wLvz0q+YZf3pm7b3wqwE/ahUavuplvXq2nuxB7/HZHsm6+O5Pc+P60/HcN+Gk75sgWAY7xNdy3VXg691zjob7aHr89gHqe6vc7pz1+BfjN0dj8Gff2uZf9yBjheTy5CHjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGAFw140YAXDXjRgBcNeNGA31fps9t+A37X7rPboz+FkiHgf1bnU9FeA/7Q86zGp2b8Bvyu5d0DD/WK7T5mXOH/Z/Eb8Pvms9nfzf8vFc8BLxrwogEvGvCiAS8a8KIBLxrwogEvGvCiAS8a8KIBLxrwogEvGvCiAS8a8KL9CQoJV4tRJn/yAAAAAElFTkSuQmCC" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<pre><code class="r">plot(a, a, type = &quot;b&quot;, lwd = 1)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAbFBMVEX9/v0AAAAAADkAAGUAOTkAOWUAOY8AZrU5AAA5ADk5AGU5OWU5OY85j9plAABlADllAGVlOQBlOY9ltf2POQCPOTmPZgCPtY+P29qP2/21ZgC1/v3ajzna24/a/v39tWX924/9/rX9/tr9/v1zC8YmAAAAJHRSTlP//////////////////////////////////////////////wBYLA0NAAAACXBIWXMAAAsSAAALEgHS3X78AAALjUlEQVR4nO3d61YbRxZA4bSZMcRjMDPgzAAadHv/d4wkjLhYl+quU3Vue69k8SNxuep8tKSWDfyxppT9ob0B0gn4pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pNXAD2S5hvAVv5ZaB3zSgE8a8EkDPmnAJ60afnG1uzm4eBq7NKlWC7+6v9t9nH99Hrk0qVYLv7x9+vCxfGlSjSs+adXP8csbnuM99PlNWl7V52hYfwJpAF/4xwDUsx7whUtTz4DPmvRz/K/Xdode3QFvueorfnV/PW1pUq3+oX7542HS0tStQxI8x8fvIATw4TvsAHz0jjAAH7ujb6MBH7rjBsBH7gQB8IE7JQB83E4CAB+20/MHPmpnxg980M5NH/iYnR0+8BEr+NtPwAesZPLAx6to8MCHq2zuwEercOzAB6t06sDHqnjowIeqfObAB2rMFy8BH6dRAwc+TOPmDXyURo4b+CCNnTbwMRo9bOBDNH7WwEdowqiB99+k7z0CvPumzRl4700cM/DOmzpl4H03ecjAu276jIH3XMWIgXdczYSB91vVgIH3WuW3jAXeabXTBd5n1cMF3mX1swXeYwKjBd5hEpMF3l8igwXeXTJzBd5ZUj/xBXhfiQ0VeFfJzRR4TwmOFHhHSU4UeD+JDhR4N8nOE3gvCY8TeB+J/8BW4F0kP0vgPdRglMA7qMUkgbdfk0ECb742cwTeeo3GCLzxWk0ReNs1GyLwlhN/2+bd0qf/M/CatZwg8HZrOkDgzdZ2fsBbrfH4gDda6+kBb7Pmw6uGX1wNl7NhuHgauzSdqP3sauFXPx/Ws8uN//fnkUvT0Rrevr/9Hqf/81n45e3Tenb98vF1ydfqd5ezLoPjijdXn7lJPMdf8xwvWKex8areWL2mBrytug0NeFP1mxnwluo4MuDt1PUGGHgz9Z0X8FbqPC7gjdR7WsDbqPuwgDdR/1kBbyGFUQFvII1JAa+fyqCA107p7y0Ar5zWlIDXTW1IwKumNyPgNVMcEfCKaU4IeL1UBwS8WrrzAV4p7S87AF4n9eEAr5L+bIDXyMBogFfIwmSA75+JwQDfPRtzAb53RsYCfN+0b9/3Ad81OzMBvmeGRgJ8xyxNBPh+mRoI8N2yNQ/ge2VsHMB3yto0gO+TuWEA3yMzb9u8BXyHLE4C+PaZHATwzbM5B+BbZ3QMwDfO6hSAb5vZIQDfNLszAL5hBm/f9wHfLtMDAL5Zts8PfKuMHx/4Rlk/PfBtMn944Jtk/+zAt8jB0YGXz/Lt+z7gxfNxbuClc3Js4IXzcmrgZXNzaOBF83Nm4CVzdGTgBfN0YuDlcnVg4KVy8bbNW8AL5e20wMvk7rDAi+TvrMBL5PCowAvk8aTA1+fyoMBX5/Oc1fCLq7vV/TB8fR67dJCc3b7vq4Vf3d+tH+82/t9/k3c6kXG5PWQt/PL2afXzYfdxv+Rr9bszn98zVj/Uby73+fV6Pb8cu3SEHB+x/sXd4+7q/t3d81QK83xCXtVPz/UBgZ+c7/MBPzXnxwN+Wu7vWYCflP+zAT+lAEcDfkIRTgb8+EIcDPjRxTgX8GMLcizgRxblVMCPK8yhgB+T+7dt3gJ+RJFOVAY/2/3R68XT6f953NL+CnWgIvjlj4f55Xp24M/cK5Z2V6zzlMHfPr38I7m0t3Id5wV+9fNh88/iW2b4WKcpfY7fmM+H4Vp0aV+FOsw2XtUXFeksLwFfUKDb933Any/MQd4H/NminONjwJ8ryDE+B/yZYpzi94A/XYhDHAr4k0U4w+GAP1WAIxwL+BP5P8HxgD9axLdt3gL+WM63fy7gj+R79+cD/nCuN18S8AfzvPeygD+U462XBvyB/O68POB/z+3GxwT852Lfvu8D/lM+dz0+4D/mctNTAv5DHvc8LeDf53DLUwP+Xf52PD3g33K34ZqA3+dtv3UB/6skt+/7gH/J1WYlAn6Xp73KBPw2R1uVCvi1p53KBbyjjUoGvJt9yga8k21Klx7exy7lSw6f7W2bt3LDO9hiq1LD299huzLDm99gyxLDW99f2/LCG99e69LC295d+7LCm95cj3LC571935cS3u7O+pUR3uzGepYQ3uq++pYP3ui2epcO3uau+pcN3uSmNEoGb3FPOqWC5/b9rUzw5jakmQz8wZ9MZm3O1vajWy388mYYjvz8UWODNrYd7aqv+OXNhvzDFT+8Vrk12WztRj+Bh/rlzdf/m3+oN7UZC4k8xy+uDv2gaUuztrQXG+V4VW9oK1ZKAW9nJ3ZKAG/sVaaR4sMb2Ya1wsPb2IW9osOb2ITFgsNb2IPNYsMb2ILVQsPr78BukeHVN2C5uPDcvp8sLDzsp4sKj/uZgsLjfq6Y8LifLSQ87ueLCI97QQHhcS8pHDy372VFg4e9sGDwuJcWCx734kLB415eJHjcRxQIHvcxxYHHfVRh4HEfVxB43rYZWwx42EcXAh738UWAx31CAeBxn5J/eNwn5R4e92l5h8d9Yr7huX2fnGt42KfnGR73ihzD416TX3jcq3ILj3tdXuFxr8wpPO61uYTn9r0+j/CwC+QQHneJ/MHjLpI7eNxl8gaPu1DO4HGXyhc87mK5gsddLkfwvG0jmR942EVzA4+7bF7gcRfOCTzu0vmAx108F/C4y+cBHvcG2Yfn9r1J5uFhb5N1eNwbZRwe91bZhse9WabhcW+XZXjcG2YYHveWmYXn9r1tVuFhb5xReNxbVw2/uBq+PKzXy9unkUufCvfm1cKv7u82/17LwuPevlr4F/DHy3fww2uN9kQSSVzxm2b/+CZ2xePeo+rn+OXN9fbD7EIKHvcumXtVj3ufjMHztk2vbMHD3i1T8Lj3yxI87h0zBI97z+zA4941M/C4980KPO6dswHP7Xv3TMDD3j8L8LgrZAAed4304XFXSR0ed5204XFXShked61U4bl910sTHnbFFOFx10wPHnfV1OBx100LHnfllOBx104HHnf1VOBx108BnrdtLNQfHnYTdYfH3Ua94XE3Umd43K2k/efxpBTwSesGX/E9cahBveCH878X9Qz4pAGfNJ7jk8ar+qQBnzTgkwZ80oBPGvBJAz5pwCcN+KQBnzTgk9YSnizXDn56TR4r/CxqYavAKyxqYavAKyxqYavAKyxqYavAKyxqYavAKyxqYavAKyxqYas68KQe8EkDPmnAJw34pAGfNOCTBnzSgE8a8ElTgF9cDcOd/LKre/FFV/fDlwfpRbfnv3iSXvPbZsXlzfD1ufRX9Idf/nhYL/6Un+dM/rPp8W49Lx9lYdvzz4RXnW8/lbaf+bPL0l/SH36+3dujONLiX/+WXnN5K31hblt8f5Ze+fHLfzdX/HbR3ZVflM5z/PazXrbVz/+JP9Qvvv/V4KG+xRW/A999RhUPVgV+dX8tveTsWv45fnF1t5umcKOeigvbwm+flWzDL2/E3Tc+DeBHXULFq25e38ylX925uOK3F5J0s93fJBf+fFr+pwX8uAuzsIWD5/gW7tsa3M49tniob3bFb59ALb+qf7k45fEbwG+ejcXvuLf3XvIvGT3cx5OJgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAH/UqOv3bYb8Lt2X7td/FUoEQJ+X5uvirYa8L96HFp81YzdgN+1vLnjoT5juy8zbvD9WewG/EuzYfin+PdSsRzwSQM+acAnDfikAZ804JMGfNKATxrwSQM+acAnDfikAZ804JMGfNKATxrwSQM+aX8Dp++ATs9N1j8AAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-4"/> </p>
 
 <h1>色</h1>
 
@@ -355,7 +367,233 @@ plot(x, x, col = rainbow(10), pch = 20)
 pie(rep(1, 10), col = gray(0:10/10))
 </code></pre>
 
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAhFBMVEX9/v0AAAAAADkAAGUAOY8AZrUaGhozMzM5AAA5ADk5AGU5OWU5OY85j7U5j9pMTExlAABlADllAGVlOQBlOY9ltf1mZmaAgICPOQCPOTmPOWWPZgCPtY+P29qP2/2ZmZmysrK1ZgC1/v3MzMzajzna/v3m5ub9tWX924/9/rX9/tr9/v3qZqGuAAAALHRSTlP/////////////////////////////////////////////////////////AMfWCYwAAAAJcEhZcwAACxIAAAsSAdLdfvwAABAZSURBVHic7d1rY1rHEcbxrO2kTuq6dlq5TptasSJVSHz/71c4AgScy95mZ2bP8/zfxe4L2J9nOFAuP2wZZD9Y3wBmE+FBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFBIzxohAeN8KARHjTCg0Z40AgPGuFfewzh7Z31jdCK8Kc2v9xt73+0vhVaEf6iPT5GhL+IEw/Z5v2bb9a3QSvCX/T0GUWe8Jd9v7G+BUoR/tTjuwdOPGT3IfAxnq08wp8K1jdANcKfIjxohAeN8KARHjTCg0Z4kEIs6xvYNEz4wfUvsVatDwefZr5+fST4XPNLfetbLxwKfLH5WkcfAL580Kf1re+PTCuHFzRfGf6q4UP4uzj7QP9T//Qrht+x72ogH37a1Tv9auFf2NvB906/TvhwZG8Jv6fv136F8GfqTeRP7l3b9wX//DX67udL9ebwSSt/8z4Eb2/b7gv+PnJ+YcSuAB+l379ne/Ozs/fvdgW/+es/luAn1BvIj91j9I/7D+R5+6RGT/DPv/13YdXPsOvAJ029q3qCv/84/xg/y64Fv0z//PVjkyMpryP4zYeHWfh5dmn5Wfcl+qdP3tx7gr8f/t+WqRNcGHdV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" alt="plot of chunk unnamed-chunk-5"/> </p>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5"/> </p>
+
+<pre><code class="r">
+# 查看所有的颜色的名称的列表，可以用
+colours()
+</code></pre>
+
+<pre><code>##   [1] &quot;white&quot;                &quot;aliceblue&quot;            &quot;antiquewhite&quot;        
+##   [4] &quot;antiquewhite1&quot;        &quot;antiquewhite2&quot;        &quot;antiquewhite3&quot;       
+##   [7] &quot;antiquewhite4&quot;        &quot;aquamarine&quot;           &quot;aquamarine1&quot;         
+##  [10] &quot;aquamarine2&quot;          &quot;aquamarine3&quot;          &quot;aquamarine4&quot;         
+##  [13] &quot;azure&quot;                &quot;azure1&quot;               &quot;azure2&quot;              
+##  [16] &quot;azure3&quot;               &quot;azure4&quot;               &quot;beige&quot;               
+##  [19] &quot;bisque&quot;               &quot;bisque1&quot;              &quot;bisque2&quot;             
+##  [22] &quot;bisque3&quot;              &quot;bisque4&quot;              &quot;black&quot;               
+##  [25] &quot;blanchedalmond&quot;       &quot;blue&quot;                 &quot;blue1&quot;               
+##  [28] &quot;blue2&quot;                &quot;blue3&quot;                &quot;blue4&quot;               
+##  [31] &quot;blueviolet&quot;           &quot;brown&quot;                &quot;brown1&quot;              
+##  [34] &quot;brown2&quot;               &quot;brown3&quot;               &quot;brown4&quot;              
+##  [37] &quot;burlywood&quot;            &quot;burlywood1&quot;           &quot;burlywood2&quot;          
+##  [40] &quot;burlywood3&quot;           &quot;burlywood4&quot;           &quot;cadetblue&quot;           
+##  [43] &quot;cadetblue1&quot;           &quot;cadetblue2&quot;           &quot;cadetblue3&quot;          
+##  [46] &quot;cadetblue4&quot;           &quot;chartreuse&quot;           &quot;chartreuse1&quot;         
+##  [49] &quot;chartreuse2&quot;          &quot;chartreuse3&quot;          &quot;chartreuse4&quot;         
+##  [52] &quot;chocolate&quot;            &quot;chocolate1&quot;           &quot;chocolate2&quot;          
+##  [55] &quot;chocolate3&quot;           &quot;chocolate4&quot;           &quot;coral&quot;               
+##  [58] &quot;coral1&quot;               &quot;coral2&quot;               &quot;coral3&quot;              
+##  [61] &quot;coral4&quot;               &quot;cornflowerblue&quot;       &quot;cornsilk&quot;            
+##  [64] &quot;cornsilk1&quot;            &quot;cornsilk2&quot;            &quot;cornsilk3&quot;           
+##  [67] &quot;cornsilk4&quot;            &quot;cyan&quot;                 &quot;cyan1&quot;               
+##  [70] &quot;cyan2&quot;                &quot;cyan3&quot;                &quot;cyan4&quot;               
+##  [73] &quot;darkblue&quot;             &quot;darkcyan&quot;             &quot;darkgoldenrod&quot;       
+##  [76] &quot;darkgoldenrod1&quot;       &quot;darkgoldenrod2&quot;       &quot;darkgoldenrod3&quot;      
+##  [79] &quot;darkgoldenrod4&quot;       &quot;darkgray&quot;             &quot;darkgreen&quot;           
+##  [82] &quot;darkgrey&quot;             &quot;darkkhaki&quot;            &quot;darkmagenta&quot;         
+##  [85] &quot;darkolivegreen&quot;       &quot;darkolivegreen1&quot;      &quot;darkolivegreen2&quot;     
+##  [88] &quot;darkolivegreen3&quot;      &quot;darkolivegreen4&quot;      &quot;darkorange&quot;          
+##  [91] &quot;darkorange1&quot;          &quot;darkorange2&quot;          &quot;darkorange3&quot;         
+##  [94] &quot;darkorange4&quot;          &quot;darkorchid&quot;           &quot;darkorchid1&quot;         
+##  [97] &quot;darkorchid2&quot;          &quot;darkorchid3&quot;          &quot;darkorchid4&quot;         
+## [100] &quot;darkred&quot;              &quot;darksalmon&quot;           &quot;darkseagreen&quot;        
+## [103] &quot;darkseagreen1&quot;        &quot;darkseagreen2&quot;        &quot;darkseagreen3&quot;       
+## [106] &quot;darkseagreen4&quot;        &quot;darkslateblue&quot;        &quot;darkslategray&quot;       
+## [109] &quot;darkslategray1&quot;       &quot;darkslategray2&quot;       &quot;darkslategray3&quot;      
+## [112] &quot;darkslategray4&quot;       &quot;darkslategrey&quot;        &quot;darkturquoise&quot;       
+## [115] &quot;darkviolet&quot;           &quot;deeppink&quot;             &quot;deeppink1&quot;           
+## [118] &quot;deeppink2&quot;            &quot;deeppink3&quot;            &quot;deeppink4&quot;           
+## [121] &quot;deepskyblue&quot;          &quot;deepskyblue1&quot;         &quot;deepskyblue2&quot;        
+## [124] &quot;deepskyblue3&quot;         &quot;deepskyblue4&quot;         &quot;dimgray&quot;             
+## [127] &quot;dimgrey&quot;              &quot;dodgerblue&quot;           &quot;dodgerblue1&quot;         
+## [130] &quot;dodgerblue2&quot;          &quot;dodgerblue3&quot;          &quot;dodgerblue4&quot;         
+## [133] &quot;firebrick&quot;            &quot;firebrick1&quot;           &quot;firebrick2&quot;          
+## [136] &quot;firebrick3&quot;           &quot;firebrick4&quot;           &quot;floralwhite&quot;         
+## [139] &quot;forestgreen&quot;          &quot;gainsboro&quot;            &quot;ghostwhite&quot;          
+## [142] &quot;gold&quot;                 &quot;gold1&quot;                &quot;gold2&quot;               
+## [145] &quot;gold3&quot;                &quot;gold4&quot;                &quot;goldenrod&quot;           
+## [148] &quot;goldenrod1&quot;           &quot;goldenrod2&quot;           &quot;goldenrod3&quot;          
+## [151] &quot;goldenrod4&quot;           &quot;gray&quot;                 &quot;gray0&quot;               
+## [154] &quot;gray1&quot;                &quot;gray2&quot;                &quot;gray3&quot;               
+## [157] &quot;gray4&quot;                &quot;gray5&quot;                &quot;gray6&quot;               
+## [160] &quot;gray7&quot;                &quot;gray8&quot;                &quot;gray9&quot;               
+## [163] &quot;gray10&quot;               &quot;gray11&quot;               &quot;gray12&quot;              
+## [166] &quot;gray13&quot;               &quot;gray14&quot;               &quot;gray15&quot;              
+## [169] &quot;gray16&quot;               &quot;gray17&quot;               &quot;gray18&quot;              
+## [172] &quot;gray19&quot;               &quot;gray20&quot;               &quot;gray21&quot;              
+## [175] &quot;gray22&quot;               &quot;gray23&quot;               &quot;gray24&quot;              
+## [178] &quot;gray25&quot;               &quot;gray26&quot;               &quot;gray27&quot;              
+## [181] &quot;gray28&quot;               &quot;gray29&quot;               &quot;gray30&quot;              
+## [184] &quot;gray31&quot;               &quot;gray32&quot;               &quot;gray33&quot;              
+## [187] &quot;gray34&quot;               &quot;gray35&quot;               &quot;gray36&quot;              
+## [190] &quot;gray37&quot;               &quot;gray38&quot;               &quot;gray39&quot;              
+## [193] &quot;gray40&quot;               &quot;gray41&quot;               &quot;gray42&quot;              
+## [196] &quot;gray43&quot;               &quot;gray44&quot;               &quot;gray45&quot;              
+## [199] &quot;gray46&quot;               &quot;gray47&quot;               &quot;gray48&quot;              
+## [202] &quot;gray49&quot;               &quot;gray50&quot;               &quot;gray51&quot;              
+## [205] &quot;gray52&quot;               &quot;gray53&quot;               &quot;gray54&quot;              
+## [208] &quot;gray55&quot;               &quot;gray56&quot;               &quot;gray57&quot;              
+## [211] &quot;gray58&quot;               &quot;gray59&quot;               &quot;gray60&quot;              
+## [214] &quot;gray61&quot;               &quot;gray62&quot;               &quot;gray63&quot;              
+## [217] &quot;gray64&quot;               &quot;gray65&quot;               &quot;gray66&quot;              
+## [220] &quot;gray67&quot;               &quot;gray68&quot;               &quot;gray69&quot;              
+## [223] &quot;gray70&quot;               &quot;gray71&quot;               &quot;gray72&quot;              
+## [226] &quot;gray73&quot;               &quot;gray74&quot;               &quot;gray75&quot;              
+## [229] &quot;gray76&quot;               &quot;gray77&quot;               &quot;gray78&quot;              
+## [232] &quot;gray79&quot;               &quot;gray80&quot;               &quot;gray81&quot;              
+## [235] &quot;gray82&quot;               &quot;gray83&quot;               &quot;gray84&quot;              
+## [238] &quot;gray85&quot;               &quot;gray86&quot;               &quot;gray87&quot;              
+## [241] &quot;gray88&quot;               &quot;gray89&quot;               &quot;gray90&quot;              
+## [244] &quot;gray91&quot;               &quot;gray92&quot;               &quot;gray93&quot;              
+## [247] &quot;gray94&quot;               &quot;gray95&quot;               &quot;gray96&quot;              
+## [250] &quot;gray97&quot;               &quot;gray98&quot;               &quot;gray99&quot;              
+## [253] &quot;gray100&quot;              &quot;green&quot;                &quot;green1&quot;              
+## [256] &quot;green2&quot;               &quot;green3&quot;               &quot;green4&quot;              
+## [259] &quot;greenyellow&quot;          &quot;grey&quot;                 &quot;grey0&quot;               
+## [262] &quot;grey1&quot;                &quot;grey2&quot;                &quot;grey3&quot;               
+## [265] &quot;grey4&quot;                &quot;grey5&quot;                &quot;grey6&quot;               
+## [268] &quot;grey7&quot;                &quot;grey8&quot;                &quot;grey9&quot;               
+## [271] &quot;grey10&quot;               &quot;grey11&quot;               &quot;grey12&quot;              
+## [274] &quot;grey13&quot;               &quot;grey14&quot;               &quot;grey15&quot;              
+## [277] &quot;grey16&quot;               &quot;grey17&quot;               &quot;grey18&quot;              
+## [280] &quot;grey19&quot;               &quot;grey20&quot;               &quot;grey21&quot;              
+## [283] &quot;grey22&quot;               &quot;grey23&quot;               &quot;grey24&quot;              
+## [286] &quot;grey25&quot;               &quot;grey26&quot;               &quot;grey27&quot;              
+## [289] &quot;grey28&quot;               &quot;grey29&quot;               &quot;grey30&quot;              
+## [292] &quot;grey31&quot;               &quot;grey32&quot;               &quot;grey33&quot;              
+## [295] &quot;grey34&quot;               &quot;grey35&quot;               &quot;grey36&quot;              
+## [298] &quot;grey37&quot;               &quot;grey38&quot;               &quot;grey39&quot;              
+## [301] &quot;grey40&quot;               &quot;grey41&quot;               &quot;grey42&quot;              
+## [304] &quot;grey43&quot;               &quot;grey44&quot;               &quot;grey45&quot;              
+## [307] &quot;grey46&quot;               &quot;grey47&quot;               &quot;grey48&quot;              
+## [310] &quot;grey49&quot;               &quot;grey50&quot;               &quot;grey51&quot;              
+## [313] &quot;grey52&quot;               &quot;grey53&quot;               &quot;grey54&quot;              
+## [316] &quot;grey55&quot;               &quot;grey56&quot;               &quot;grey57&quot;              
+## [319] &quot;grey58&quot;               &quot;grey59&quot;               &quot;grey60&quot;              
+## [322] &quot;grey61&quot;               &quot;grey62&quot;               &quot;grey63&quot;              
+## [325] &quot;grey64&quot;               &quot;grey65&quot;               &quot;grey66&quot;              
+## [328] &quot;grey67&quot;               &quot;grey68&quot;               &quot;grey69&quot;              
+## [331] &quot;grey70&quot;               &quot;grey71&quot;               &quot;grey72&quot;              
+## [334] &quot;grey73&quot;               &quot;grey74&quot;               &quot;grey75&quot;              
+## [337] &quot;grey76&quot;               &quot;grey77&quot;               &quot;grey78&quot;              
+## [340] &quot;grey79&quot;               &quot;grey80&quot;               &quot;grey81&quot;              
+## [343] &quot;grey82&quot;               &quot;grey83&quot;               &quot;grey84&quot;              
+## [346] &quot;grey85&quot;               &quot;grey86&quot;               &quot;grey87&quot;              
+## [349] &quot;grey88&quot;               &quot;grey89&quot;               &quot;grey90&quot;              
+## [352] &quot;grey91&quot;               &quot;grey92&quot;               &quot;grey93&quot;              
+## [355] &quot;grey94&quot;               &quot;grey95&quot;               &quot;grey96&quot;              
+## [358] &quot;grey97&quot;               &quot;grey98&quot;               &quot;grey99&quot;              
+## [361] &quot;grey100&quot;              &quot;honeydew&quot;             &quot;honeydew1&quot;           
+## [364] &quot;honeydew2&quot;            &quot;honeydew3&quot;            &quot;honeydew4&quot;           
+## [367] &quot;hotpink&quot;              &quot;hotpink1&quot;             &quot;hotpink2&quot;            
+## [370] &quot;hotpink3&quot;             &quot;hotpink4&quot;             &quot;indianred&quot;           
+## [373] &quot;indianred1&quot;           &quot;indianred2&quot;           &quot;indianred3&quot;          
+## [376] &quot;indianred4&quot;           &quot;ivory&quot;                &quot;ivory1&quot;              
+## [379] &quot;ivory2&quot;               &quot;ivory3&quot;               &quot;ivory4&quot;              
+## [382] &quot;khaki&quot;                &quot;khaki1&quot;               &quot;khaki2&quot;              
+## [385] &quot;khaki3&quot;               &quot;khaki4&quot;               &quot;lavender&quot;            
+## [388] &quot;lavenderblush&quot;        &quot;lavenderblush1&quot;       &quot;lavenderblush2&quot;      
+## [391] &quot;lavenderblush3&quot;       &quot;lavenderblush4&quot;       &quot;lawngreen&quot;           
+## [394] &quot;lemonchiffon&quot;         &quot;lemonchiffon1&quot;        &quot;lemonchiffon2&quot;       
+## [397] &quot;lemonchiffon3&quot;        &quot;lemonchiffon4&quot;        &quot;lightblue&quot;           
+## [400] &quot;lightblue1&quot;           &quot;lightblue2&quot;           &quot;lightblue3&quot;          
+## [403] &quot;lightblue4&quot;           &quot;lightcoral&quot;           &quot;lightcyan&quot;           
+## [406] &quot;lightcyan1&quot;           &quot;lightcyan2&quot;           &quot;lightcyan3&quot;          
+## [409] &quot;lightcyan4&quot;           &quot;lightgoldenrod&quot;       &quot;lightgoldenrod1&quot;     
+## [412] &quot;lightgoldenrod2&quot;      &quot;lightgoldenrod3&quot;      &quot;lightgoldenrod4&quot;     
+## [415] &quot;lightgoldenrodyellow&quot; &quot;lightgray&quot;            &quot;lightgreen&quot;          
+## [418] &quot;lightgrey&quot;            &quot;lightpink&quot;            &quot;lightpink1&quot;          
+## [421] &quot;lightpink2&quot;           &quot;lightpink3&quot;           &quot;lightpink4&quot;          
+## [424] &quot;lightsalmon&quot;          &quot;lightsalmon1&quot;         &quot;lightsalmon2&quot;        
+## [427] &quot;lightsalmon3&quot;         &quot;lightsalmon4&quot;         &quot;lightseagreen&quot;       
+## [430] &quot;lightskyblue&quot;         &quot;lightskyblue1&quot;        &quot;lightskyblue2&quot;       
+## [433] &quot;lightskyblue3&quot;        &quot;lightskyblue4&quot;        &quot;lightslateblue&quot;      
+## [436] &quot;lightslategray&quot;       &quot;lightslategrey&quot;       &quot;lightsteelblue&quot;      
+## [439] &quot;lightsteelblue1&quot;      &quot;lightsteelblue2&quot;      &quot;lightsteelblue3&quot;     
+## [442] &quot;lightsteelblue4&quot;      &quot;lightyellow&quot;          &quot;lightyellow1&quot;        
+## [445] &quot;lightyellow2&quot;         &quot;lightyellow3&quot;         &quot;lightyellow4&quot;        
+## [448] &quot;limegreen&quot;            &quot;linen&quot;                &quot;magenta&quot;             
+## [451] &quot;magenta1&quot;             &quot;magenta2&quot;             &quot;magenta3&quot;            
+## [454] &quot;magenta4&quot;             &quot;maroon&quot;               &quot;maroon1&quot;             
+## [457] &quot;maroon2&quot;              &quot;maroon3&quot;              &quot;maroon4&quot;             
+## [460] &quot;mediumaquamarine&quot;     &quot;mediumblue&quot;           &quot;mediumorchid&quot;        
+## [463] &quot;mediumorchid1&quot;        &quot;mediumorchid2&quot;        &quot;mediumorchid3&quot;       
+## [466] &quot;mediumorchid4&quot;        &quot;mediumpurple&quot;         &quot;mediumpurple1&quot;       
+## [469] &quot;mediumpurple2&quot;        &quot;mediumpurple3&quot;        &quot;mediumpurple4&quot;       
+## [472] &quot;mediumseagreen&quot;       &quot;mediumslateblue&quot;      &quot;mediumspringgreen&quot;   
+## [475] &quot;mediumturquoise&quot;      &quot;mediumvioletred&quot;      &quot;midnightblue&quot;        
+## [478] &quot;mintcream&quot;            &quot;mistyrose&quot;            &quot;mistyrose1&quot;          
+## [481] &quot;mistyrose2&quot;           &quot;mistyrose3&quot;           &quot;mistyrose4&quot;          
+## [484] &quot;moccasin&quot;             &quot;navajowhite&quot;          &quot;navajowhite1&quot;        
+## [487] &quot;navajowhite2&quot;         &quot;navajowhite3&quot;         &quot;navajowhite4&quot;        
+## [490] &quot;navy&quot;                 &quot;navyblue&quot;             &quot;oldlace&quot;             
+## [493] &quot;olivedrab&quot;            &quot;olivedrab1&quot;           &quot;olivedrab2&quot;          
+## [496] &quot;olivedrab3&quot;           &quot;olivedrab4&quot;           &quot;orange&quot;              
+## [499] &quot;orange1&quot;              &quot;orange2&quot;              &quot;orange3&quot;             
+## [502] &quot;orange4&quot;              &quot;orangered&quot;            &quot;orangered1&quot;          
+## [505] &quot;orangered2&quot;           &quot;orangered3&quot;           &quot;orangered4&quot;          
+## [508] &quot;orchid&quot;               &quot;orchid1&quot;              &quot;orchid2&quot;             
+## [511] &quot;orchid3&quot;              &quot;orchid4&quot;              &quot;palegoldenrod&quot;       
+## [514] &quot;palegreen&quot;            &quot;palegreen1&quot;           &quot;palegreen2&quot;          
+## [517] &quot;palegreen3&quot;           &quot;palegreen4&quot;           &quot;paleturquoise&quot;       
+## [520] &quot;paleturquoise1&quot;       &quot;paleturquoise2&quot;       &quot;paleturquoise3&quot;      
+## [523] &quot;paleturquoise4&quot;       &quot;palevioletred&quot;        &quot;palevioletred1&quot;      
+## [526] &quot;palevioletred2&quot;       &quot;palevioletred3&quot;       &quot;palevioletred4&quot;      
+## [529] &quot;papayawhip&quot;           &quot;peachpuff&quot;            &quot;peachpuff1&quot;          
+## [532] &quot;peachpuff2&quot;           &quot;peachpuff3&quot;           &quot;peachpuff4&quot;          
+## [535] &quot;peru&quot;                 &quot;pink&quot;                 &quot;pink1&quot;               
+## [538] &quot;pink2&quot;                &quot;pink3&quot;                &quot;pink4&quot;               
+## [541] &quot;plum&quot;                 &quot;plum1&quot;                &quot;plum2&quot;               
+## [544] &quot;plum3&quot;                &quot;plum4&quot;                &quot;powderblue&quot;          
+## [547] &quot;purple&quot;               &quot;purple1&quot;              &quot;purple2&quot;             
+## [550] &quot;purple3&quot;              &quot;purple4&quot;              &quot;red&quot;                 
+## [553] &quot;red1&quot;                 &quot;red2&quot;                 &quot;red3&quot;                
+## [556] &quot;red4&quot;                 &quot;rosybrown&quot;            &quot;rosybrown1&quot;          
+## [559] &quot;rosybrown2&quot;           &quot;rosybrown3&quot;           &quot;rosybrown4&quot;          
+## [562] &quot;royalblue&quot;            &quot;royalblue1&quot;           &quot;royalblue2&quot;          
+## [565] &quot;royalblue3&quot;           &quot;royalblue4&quot;           &quot;saddlebrown&quot;         
+## [568] &quot;salmon&quot;               &quot;salmon1&quot;              &quot;salmon2&quot;             
+## [571] &quot;salmon3&quot;              &quot;salmon4&quot;              &quot;sandybrown&quot;          
+## [574] &quot;seagreen&quot;             &quot;seagreen1&quot;            &quot;seagreen2&quot;           
+## [577] &quot;seagreen3&quot;            &quot;seagreen4&quot;            &quot;seashell&quot;            
+## [580] &quot;seashell1&quot;            &quot;seashell2&quot;            &quot;seashell3&quot;           
+## [583] &quot;seashell4&quot;            &quot;sienna&quot;               &quot;sienna1&quot;             
+## [586] &quot;sienna2&quot;              &quot;sienna3&quot;              &quot;sienna4&quot;             
+## [589] &quot;skyblue&quot;              &quot;skyblue1&quot;             &quot;skyblue2&quot;            
+## [592] &quot;skyblue3&quot;             &quot;skyblue4&quot;             &quot;slateblue&quot;           
+## [595] &quot;slateblue1&quot;           &quot;slateblue2&quot;           &quot;slateblue3&quot;          
+## [598] &quot;slateblue4&quot;           &quot;slategray&quot;            &quot;slategray1&quot;          
+## [601] &quot;slategray2&quot;           &quot;slategray3&quot;           &quot;slategray4&quot;          
+## [604] &quot;slategrey&quot;            &quot;snow&quot;                 &quot;snow1&quot;               
+## [607] &quot;snow2&quot;                &quot;snow3&quot;                &quot;snow4&quot;               
+## [610] &quot;springgreen&quot;          &quot;springgreen1&quot;         &quot;springgreen2&quot;        
+## [613] &quot;springgreen3&quot;         &quot;springgreen4&quot;         &quot;steelblue&quot;           
+## [616] &quot;steelblue1&quot;           &quot;steelblue2&quot;           &quot;steelblue3&quot;          
+## [619] &quot;steelblue4&quot;           &quot;tan&quot;                  &quot;tan1&quot;                
+## [622] &quot;tan2&quot;                 &quot;tan3&quot;                 &quot;tan4&quot;                
+## [625] &quot;thistle&quot;              &quot;thistle1&quot;             &quot;thistle2&quot;            
+## [628] &quot;thistle3&quot;             &quot;thistle4&quot;             &quot;tomato&quot;              
+## [631] &quot;tomato1&quot;              &quot;tomato2&quot;              &quot;tomato3&quot;             
+## [634] &quot;tomato4&quot;              &quot;turquoise&quot;            &quot;turquoise1&quot;          
+## [637] &quot;turquoise2&quot;           &quot;turquoise3&quot;           &quot;turquoise4&quot;          
+## [640] &quot;violet&quot;               &quot;violetred&quot;            &quot;violetred1&quot;          
+## [643] &quot;violetred2&quot;           &quot;violetred3&quot;           &quot;violetred4&quot;          
+## [646] &quot;wheat&quot;                &quot;wheat1&quot;               &quot;wheat2&quot;              
+## [649] &quot;wheat3&quot;               &quot;wheat4&quot;               &quot;whitesmoke&quot;          
+## [652] &quot;yellow&quot;               &quot;yellow1&quot;              &quot;yellow2&quot;             
+## [655] &quot;yellow3&quot;              &quot;yellow4&quot;              &quot;yellowgreen&quot;
+</code></pre>
 
 <p>我们肯定是记不住这么多颜色的，所以这里有一个专门整理好的网站，供我们参考
 <a href="http://research.stowers-institute.org/efg/R/Color/Chart/">http://research.stowers-institute.org/efg/R/Color/Chart/</a></p>
